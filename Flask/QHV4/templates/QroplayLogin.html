@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="../static/CSS/QroplayPerfiles.css"/>
+  <title>QroPlay - Login</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hubballi&family=Inter:wght@400&display=swap" rel="stylesheet">
+  <link rel="icon" href="../static/Resourses/QroPlay/recursos/logo.png" type="image/x-icon" />
+</head>
+<body>
+
+  <img src="../static/Resourses/QroPlay/recursos/logo.png" alt="Logo de QroHuerto" class="logo_qrohuerto" />
+
+  <h2 class="welcome_text">¡Bienvenido!</h2>
+  <h1 class="titulo">¿Quién está plantando?</h1>
+  <br><br><br>
+  <div class="perfiles">
+<div class="perfil">
+  <h2 class="nombre_perfil">{{apodo}}</h2>
+  <img src="{{ url_for('static', filename='uploads/' + foto_perfil) }}" alt="Alexa" class="foto_perfil"
+       onclick="window.location.href='{{ url_for('qroplay') }}'" style="cursor:pointer;" />
+</div>
+
+  </div>
+
+  <div class="seccion_botones">
+    <a href="{{ url_for('index2') }}" class="boton_gestionar_perfiles">regresar</a>
+    <a href="#" class="boton_gestionar_perfiles">Crear Perfiles</a>
+  </div>
+
+</body>
+</html>

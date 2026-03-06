@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QroPlay</title>
+  <link rel="icon" href="../static/Resourses/QroPlay/recursos/logo.png" type="image/x-icon" />
+  <link rel="stylesheet" href="normalize.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    body {
+      background: #030912;
+      color: #fff;
+      overflow-x: hidden;
+      scroll-behavior: smooth; /* 🔹 Scroll suave global */
+    }
+
+    /* VIDEO BACKGROUND */
+    video {
+      width: 100%;
+      height: 100vh;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    /* SIDE MENU */
+    .side-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100px;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 0;
+
+  /* Efecto Glass */
+  background: rgba(15, 15, 15, 0.25); /* Color muy transparente */
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border-right: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil */
+
+  z-index: 1000;
+  transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .side-menu ul {
+      list-style: none;
+      margin-top: 50px;
+    }
+
+    .side-menu li {
+      margin-bottom: 50px;
+      text-align: center;
+    }
+
+    .side-menu a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #fff;
+      font-size: 14px;
+      transition: 0.3s;
+      text-decoration: none;
+    }
+
+    .side-menu a:hover {
+      color: #1db954;
+      transform: scale(1.1);
+    }
+
+    .iconplay {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 5px;
+    }
+
+    /* HEADER */
+/* HEADER FIJO SOBRE EL VIDEO */
+/* Efecto glass inicial oculto */
+.header-container {
+  position: fixed;
+  top: 0;
+  left: 100px;
+  width: calc(100% - 100px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background: linear-gradient(to bottom, rgb(3, 6, 26), rgba(0,0,0,0));
+  transition: background 0.5s ease, backdrop-filter 0.5s ease; /* 🔹 Transiciones suaves */
+  z-index: 10;
+}
+
+/* Clase activa con efecto glass */
+.header-container.glass {
+  background: rgba(3, 9, 18, 0.3);
+  backdrop-filter: blur(10px);
+
+}
+
+
+.LogoQro img {
+  width: 100px;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.menu a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.imgperfil {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+
+    /* BANNER INFO */
+.imagotipo {
+  position: absolute;
+  top: 40%; /* 🔹 Ajusta este valor para subir o bajar */
+  left: 150px;
+  transform: translateY(-50%);
+  width: 50%;
+  z-index: 5; /* 🔹 Más alto que el header y el degradado */
+  color: #fff;
+}
+
+.imagotipo img {
+  width: 350px;
+  margin-bottom: 20px;
+}
+
+.info {
+  max-width: 500px;
+  line-height: 1.5;
+}
+
+
+/* MAIN */
+main {
+  margin-left: 120px;
+  margin-top: 50vh; /* 🔹 Antes 65vh, ahora aparece más arriba */
+  padding: 50px 20px;
+  position: relative;
+  z-index: 1;
+  background: transparent;
+}
+
+/* Degradado sobre el video */
+.video-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; /* Altura del degradado */
+  background: linear-gradient(to bottom, rgba(3, 9, 18, 0) 0%, rgba(3, 9, 18, 1) 100%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+
+    /* CATALOGOS */
+    .catalogo--peliculas {
+      margin-bottom: 100px;
+    }
+
+    .catalogo--peliculas h1 {
+      margin-bottom: 15px;
+    }
+
+    /* SLIDER */
+    .slider-container {
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .peliculas {
+      display: flex;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      gap: 15px;
+      padding-bottom: 10px;
+    }
+
+    .peliculas::-webkit-scrollbar {
+      display: none;
+    }
+
+.pelicula {
+  position: relative;
+  flex: 0 0 auto;
+  width: 240px;
+  height: 140px;
+  border-radius: 12px;
+  overflow: hidden; /* para que el contenido interno respete bordes */
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+    .pelicula:hover {
+      transform: scale(1.1);
+    }
+
+.pelicula img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* Degradado inferior por defecto */
+.pelicula-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;  /* Altura del degradado */
+  color: transparent; /* Título oculto por defecto */
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0 10px 10px;
+  border-radius: 0 0 12px 12px;
+  transition: background 0.3s ease, color 0.3s ease;
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+  mix-blend-mode: normal; 
+}
+
+/* Mostrar título y hacer más intenso el degradado al hover */
+.pelicula:hover {
+  transform: scale(1.1);
+  border-radius: 0 0 12px 12px; /* bordes redondeados solo abajo */
+}
+
+.pelicula:hover .pelicula-info {
+  color: white; /* Título visible */
+    background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(3, 9, 18, 0.7) 60%,
+    #030912 100%
+  );
+}
+    .slider-container button {
+      background: rgba(0,0,0,0.6);
+      border: none;
+      color: white;
+      font-size: 2rem;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .slider-container .prev { position: absolute; left: 0; }
+    .slider-container .next { position: absolute; right: 0; }
+
+
+    /* Miniaturas verticales tipo móvil */
+.pelicula-vertical {
+  flex: 0 0 auto;
+  width: 120px;
+  height: 200px;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.pelicula-vertical:hover {
+  transform: scale(1.08);
+}
+
+.pelicula-vertical img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Botón Hamburguesa */
+.hamburger {
+  font-size: 24px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 15px;
+  .hamburger {
+  display: inline-block;
+}
+}
+
+/* Animación del Side Menu */
+.side-menu {
+  transition: transform 0.3s ease;
+      box-shadow:
+    0 0 8px 2px #7F3DFF,
+    0 0 15px 6px #4BA6FF;
+}
+
+.side-menu.hidden {
+  transform: translateX(-100%);
+}
+.side-menu a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: 15px;
+  text-decoration: none;
+  transition: 
+    color 0.3s ease,
+    transform 0.3s ease,
+    text-shadow 0.3s ease;
+  background: none;
+  box-shadow: none;
+}
+
+.side-menu a:hover {
+  color: white;
+  transform: scale(1.15);
+  text-shadow:
+    0 0 5px #7F3DFF,
+    0 0 10px #7F3DFF,
+    0 0 20px #4BA6FF,
+    0 0 30px #4BA6FF;
+  background: none;
+  box-shadow: none;
+}
+
+/* Menú en el header */
+.header-menu {
+  display: none;
+  gap: 20px;
+  transition: background 0.3s ease;
+  border-radius: 8px;
+  padding: 10px 20px;
+}
+
+.header-menu.show {
+  display: flex;
+  align-items: center;
+}
+
+.header-menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 8px 12px;
+  border-radius: 15px;
+  transition: 
+    color 0.3s ease, 
+    transform 0.3s ease,
+    text-shadow 0.3s ease;
+  display: inline-block;
+  background: none; /* Sin fondo */
+  box-shadow: none; /* Sin sombra de caja */
+}
+
+.header-menu a:hover {
+  color: white;
+  transform: scale(1.15);
+  /* Efecto glow solo en la letra con text-shadow */
+  text-shadow:
+    0 0 5px #7F3DFF,
+    0 0 10px #7F3DFF,
+    0 0 20px #4BA6FF,
+    0 0 30px #4BA6FF;
+  box-shadow: none; /* Sin sombra en el contenedor */
+  background: none; /* Sin fondo */
+}
+
+/* Modal de Video */
+.video-modal {
+  display: none; /* Mantenerlo oculto por defecto */
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+
+  /* Centrado cuando se muestre */
+  justify-content: center;
+  align-items: flex-start; /* 🔹 Arriba */
+  padding-top: 10vh; 
+}
+
+.video-content {
+  position: relative;
+  width: 80%;
+  max-width: 500px;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.video-content video {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.video-content .close {
+  position: absolute;
+  top: -40px;
+  right: -10px;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+}
+
+
+  </style>
+</head>
+<body>
+
+
+  <!-- Modal de Video -->
+<div id="videoModal" class="video-modal">
+  <div class="video-content">
+    <span class="close">&times;</span>
+    <video id="modalVideo" controls>
+      <source src="" type="video/mp4">
+      Tu navegador no soporta videos.
+    </video>
+  </div>
+</div>
+
+
+
+  <!-- Side Menu -->
+  <aside class="side-menu">
+    <ul>
+      <li><a href="#inicio"><img class="iconplay" src="../static/Resourses/QroPlay/icon/home.png" alt="">Inicio</a></li>
+      <li><a href="#plasticos"><img class="iconplay" src="../static/Resourses/QroPlay/icon/botellas.png" alt="">Plasticos</a></li>
+      <li><a href="#madera"><img class="iconplay" src="../static/Resourses/QroPlay/icon/madera.png" alt="">Madera</a></li>
+      <li><a href="#costal"><img class="iconplay" src="../static/Resourses/QroPlay/icon/costal.png" alt="">Costal</a></li>
+       <li><a href="{{ url_for('index2') }}"><img class="iconplay" src="../static/Resourses/Logos/QH Blanco.png" alt="">QroHuerto</a></li>
+
+  </ul>
+    </ul>
+  </aside>
+
+<!-- Background Video -->
+<video muted autoplay loop ">
+  <source src="../static/Resourses/Video/QroPlay.mp4" type="video/mp4">
+</video>
+
+<!-- Degradado inferior -->
+ <div class="video-overlay" style="background:url('BackQroplay1.png');"></div>
+<div class="video-overlay" ></div>
+
+
+  <!-- HEADER -->
+<header class="header-container">
+  <div class="LogoQro">
+    <img src="../static/Resourses/QroPlay/recursos/QO Blanco.png" alt="">
+    <!-- Botón hamburguesa -->
+    <button class="hamburger" id="menuToggle">&#9776;</button>
+  </div>
+
+  <!-- Opciones que aparecerán en el header cuando el menú esté oculto -->
+  <nav class="header-menu" id="headerMenu">
+    <a href="#inicio">Inicio</a>
+    <a href="#plasticos">Plasticos</a>
+    <a href="#madera">Madera</a>
+    <a href="#costal">Costal</a>
+    <a href="{{ url_for('index2') }}">QroHuerto</a>
+  </nav>
+  <div class="menu">
+    <a href="#">{{apodo}}</a>
+  {% if foto_perfil %}
+    <img class="imgperfil" src="{{ url_for('static', filename='uploads/' + foto_perfil) }}" alt="Foto de {{ apodo }}">
+  {% else %}
+    <img class="imgperfil" src="{{ url_for('static', filename='Resourses/Img/user.png') }}" alt="Foto por defecto">
+  {% endif %}
+</div>
+</header>
+
+  <!-- BANNER -->
+  <section class="imagotipo">
+    <img src="../static/Resourses/QroPlay/recursos/QroPlay 2025 Full 3 Blanco.png" alt="">
+    <div class="info">
+      <p></p>Bienvenido a QroPlay, tu plataforma de tutoriales y proyectos sustentables.</p>
+      <p>Explora ideas con plástico, madera y costales para crear huertos y proyectos únicos.</p>
+    </div>
+  </section>
+
+  <!-- CATALOGOS -->
+  <main>
+    <!-- INICIO -->
+ <!-- INICIO -->
+<section id="inicio" class="catalogo--peliculas">
+  <h1>Recomendados</h1>
+  <div class="slider-container">
+    <button class="prev">&#10094;</button>
+    <div class="peliculas">
+<div class="pelicula">
+  <img src="../static/Resourses/QroPlay/miniaturas/Video1.png" alt="">
+  <div class="pelicula-info"><h3>Inicio del Viaje</h3></div>
+</div>
+<div class="pelicula">
+  <img src="../static/Resourses/QroPlay/miniaturas/Video2.png" alt="">
+  <div class="pelicula-info"><h3>Aventuras en el Huerto</h3></div>
+</div>
+<div class="pelicula">
+  <img src="../static/Resourses/QroPlay/miniaturas/Video3.png" alt="">
+  <div class="pelicula-info"><h3>Secretos del Cultivo</h3></div>
+</div>
+<div class="pelicula">
+  <img src="../static/Resourses/QroPlay/miniaturas/Video4.png" alt="">
+  <div class="pelicula-info"><h3>Cosecha Perfecta</h3></div>
+</div>
+<div class="pelicula">
+  <img src="../static/Resourses/QroPlay/miniaturas/Video5.png" alt="">
+  <div class="pelicula-info"><h3>Guía de Siembra</h3></div>
+</div>
+<div class="pelicula">
+  <img src="../static/Resourses/QroPlay/miniaturas/Video6.png" alt="">
+  <div class="pelicula-info"><h3>Consejos del Experto</h3></div>
+</div>
+<div class="pelicula">
+  <img src="../static/Resourses/QroPlay/miniaturas/Video1.png" alt="">
+  <div class="pelicula-info"><h3>Inicio del Viaje</h3></div>
+</div>
+<div class="pelicula">
+  <img src="../static/Resourses/QroPlay/miniaturas/Video2.png" alt="">
+  <div class="pelicula-info"><h3>Aventuras en el Huerto</h3></div>
+</div>
+<div class="pelicula">
+  <img src="../static/Resourses/QroPlay/miniaturas/Video3.png" alt="">
+  <div class="pelicula-info"><h3>Secretos del Cultivo</h3></div>
+</div>
+<div class="pelicula">
+  <img src="../static/Resourses/QroPlay/miniaturas/Video4.png" alt="">
+  <div class="pelicula-info"><h3>Cosecha Perfecta</h3></div>
+</div>
+<div class="pelicula">
+  <img src="../static/Resourses/QroPlay/miniaturas/Video5.png" alt="">
+  <div class="pelicula-info"><h3>Guía de Siembra</h3></div>
+</div>
+<div class="pelicula">
+  <img src="../static/Resourses/QroPlay/miniaturas/Video6.png" alt="">
+  <div class="pelicula-info"><h3>Consejos del Experto</h3></div>
+</div>
+
+    </div>
+    <button class="next">&#10095;</button>
+  </div>
+</section>
+
+<!-- NUEVA SECCION VERTICAL -->
+<section id="vertical" class="catalogo--peliculas">
+  <h1>Contenido Vertical</h1>
+  <div class="slider-container">
+    <button class="prev">&#10094;</button>
+    <div class="peliculas vertical">
+      <div class="pelicula-vertical"><img src="../static/Resourses/QroPlay/miniaturas/Video7.png" alt=""></div>
+      <div class="pelicula-vertical"><img src="../static/Resourses/QroPlay/miniaturas/Video8.png" alt=""></div>
+      <div class="pelicula-vertical"><img src="../static/Resourses/QroPlay/miniaturas/Video9.png" alt=""></div>
+      <div class="pelicula-vertical"><img src="../static/Resourses/QroPlay/miniaturas/Video10.png" alt=""></div>
+      <div class="pelicula-vertical"><img src="../static/Resourses/QroPlay/miniaturas/Video11.png" alt=""></div>
+      <div class="pelicula-vertical"><img src="../static/Resourses/QroPlay/miniaturas/Video12.png" alt=""></div>
+    </div>
+    <button class="next">&#10095;</button>
+  </div>
+</section>
+
+<!-- PLASTICOS -->
+<section id="plasticos" class="catalogo--peliculas">
+  <h1>Tutoriales de Plásticos</h1>
+  <div class="slider-container">
+    <button class="prev">&#10094;</button>
+    <div class="peliculas">
+      <div class="pelicula"><img src="../static/Resourses/QroPlay/miniaturas/Video13.png" alt=""></div>
+      <div class="pelicula"><img src="../static/Resourses/QroPlay/miniaturas/Video14.png" alt=""></div>
+      <div class="pelicula"><img src="../static/Resourses/QroPlay/miniaturas/Video15.png" alt=""></div>
+      <div class="pelicula"><img src="../static/Resourses/QroPlay/miniaturas/Video16.png" alt=""></div>
+      <div class="pelicula"><img src="../static/Resourses/QroPlay/miniaturas/Video17.png" alt=""></div>
+      <div class="pelicula"><img src="../static/Resourses/QroPlay/miniaturas/Video18.png" alt=""></div>
+    </div>
+    <button class="next">&#10095;</button>
+  </div>
+</section>
+
+<!-- MADERA -->
+<section id="madera" class="catalogo--peliculas">
+  <h1>Tutoriales de Madera</h1>
+  <div class="slider-container">
+    <button class="prev">&#10094;</button>
+    <div class="peliculas">
+      <div class="pelicula"><img src="../static/Resourses/QroPlay/miniaturas/Video19.png" alt=""></div>
+      <div class="pelicula"><img src="../static/Resourses/QroPlay/miniaturas/Video20.png" alt=""></div>
+      <div class="pelicula"><img src="../static/Resourses/QroPlay/miniaturas/Video21.png" alt=""></div>
+      <div class="pelicula"><img src="../static/Resourses/QroPlay/miniaturas/Video22.png" alt=""></div>
+      <div class="pelicula"><img src="../static/Resourses/QroPlay/miniaturas/Video23.png" alt=""></div>
+      <div class="pelicula"><img src="../static/Resourses/QroPlay/miniaturas/Video1.png" alt=""></div>
+    </div>
+    <button class="next">&#10095;</button>
+  </div>
+</section>
+
+<!-- COSTAL -->
+<section id="costal" class="catalogo--peliculas">
+  <h1>Tutoriales de Costal</h1>
+  <div class="slider-container">
+    <button class="prev">&#10094;</button>
+    <div class="peliculas">
+      <div class="pelicula"><img src="../static/Resourses/QroPlay/miniaturas/Video2.png" alt=""></div>
+      <div class="pelicula"><img src="../static/Resourses/QroPlay/miniaturas/Video3.png" alt=""></div>
+      <div class="pelicula"><img src="../static/Resourses/QroPlay/miniaturas/Video4.png" alt=""></div>
+      <div class="pelicula"><img src="../static/Resourses/QroPlay/miniaturas/Video5.png" alt=""></div>
+      <div class="pelicula"><img src="../static/Resourses/QroPlay/miniaturas/Video6.png" alt=""></div>
+      <div class="pelicula"><img src="../static/Resourses/QroPlay/miniaturas/Video7.png" alt=""></div>
+    </div>
+    <button class="next">&#10095;</button>
+  </div>
+</section>
+
+  </main>
+
+  <script>
+
+const header = document.querySelector('.header-container');
+const sideMenu = document.querySelector('.side-menu');
+const menuToggle = document.getElementById('menuToggle');
+const headerMenu = document.getElementById('headerMenu');
+const mainContent = document.querySelector('main');
+const imagotipo = document.querySelector('.imagotipo');
+
+let menuVisible = true;
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) {
+    header.classList.add('glass');
+  } else {
+    header.classList.remove('glass');
+  }
+});
+
+menuToggle.addEventListener('click', () => {
+  menuVisible = !menuVisible;
+
+  if (menuVisible) {
+    // Mostrar el menú lateral
+    sideMenu.classList.remove('hidden');
+    headerMenu.classList.remove('show');
+
+    header.style.left = "100px";
+    header.style.width = "calc(100% - 100px)";
+    mainContent.style.marginLeft = "120px";
+    imagotipo.style.left = "150px";
+
+  } else {
+    // Ocultar el menú lateral y expandir contenido
+    sideMenu.classList.add('hidden');
+    headerMenu.classList.add('show');
+
+    header.style.left = "0";
+    header.style.width = "100%";
+    mainContent.style.marginLeft = "0";
+    imagotipo.style.left = "50px"; // Ajusta si quieres centrar más el logo
+  }
+});
+
+
+
+    // Slider funcionalidad
+    document.querySelectorAll('.slider-container').forEach(container => {
+      const peliculas = container.querySelector('.peliculas');
+      const prev = container.querySelector('.prev');
+      const next = container.querySelector('.next');
+
+      prev.addEventListener('click', () => {
+        peliculas.scrollBy({ left: -220, behavior: 'smooth' });
+      });
+
+      next.addEventListener('click', () => {
+        peliculas.scrollBy({ left: 220, behavior: 'smooth' });
+      });
+    });
+  </script>
+
+<script>
+  // Modal de video
+const videoModal = document.getElementById('videoModal');
+const modalVideo = document.getElementById('modalVideo');
+const closeModal = document.querySelector('.video-content .close');
+
+// Selecciona la miniatura
+const videoThumb = document.querySelector('.pelicula img[src="../static/Resourses/QroPlay/miniaturas/Video2.png"]');
+
+// Abrir modal con el video
+videoThumb.addEventListener('click', () => {
+  modalVideo.src = "../static/Resourses/QroPlay/videos/Video2.mp4"; // tu video
+  videoModal.style.display = "flex";
+  modalVideo.play();
+});
+
+// Cerrar modal
+closeModal.addEventListener('click', () => {
+  videoModal.style.display = "none";
+  modalVideo.pause();
+  modalVideo.src = "";
+});
+
+// Cerrar modal al hacer click fuera del video
+videoModal.addEventListener('click', (e) => {
+  if (e.target === videoModal) {
+    videoModal.style.display = "none";
+    modalVideo.pause();
+    modalVideo.src = "";
+  }
+});
+
+</script>
+
+</body>
+</html>

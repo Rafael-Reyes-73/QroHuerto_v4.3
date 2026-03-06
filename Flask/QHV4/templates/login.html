@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Login QroHuerto</title>
+  <link rel="stylesheet" href="CSS/login.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Signup Form</title>
+    <link rel="stylesheet" href="../static/CSS/login.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&display=swap" rel="stylesheet">
+</head>
+<body>
+    <video autoplay muted loop id="bg-video">
+        <source src="2.mp4" type="video/mp4">
+        Tu navegador no soporta videos HTML5.
+      </video>
+      <div class="video-overlay"></div>
+      
+<button id="darkModeToggle" class="liquid-glass-btn">
+    Dark
+</button>
+
+<div id="loginAlertContainer"></div>
+
+    <div class="container">
+        <div class="form-box login">
+<form action="{{ url_for('login') }}" method="POST">
+  
+    <img id="logo-login" class="imglogin" src="{{ url_for('static', filename='Resourses/Logos/QH.png') }}" alt="Logo">
+    <h1>Login</h1>
+
+    <div class="wrapper">
+        <input type="text" name="apodo" id="apodo" >
+        <label for="apodo">
+            <span>Usuario</span>
+        </label>
+    </div>
+    
+    <div class="wrapper">
+        <input type="password" name="password" id="password" >
+        <label for="password">
+            <span>Contraseña</span>
+        </label>
+    </div>
+    
+    <div class="forgot-link">
+        <a href="#">¿Has olvidado tu contraseña?</a>
+    </div>
+    
+    <button type="submit" class="btn">Login</button>
+    
+
+
+</form>
+
+        </div>
+
+<div class="form-box register">
+    <div class="register-content">
+        <img id="logo-register" class="imglogin" src="../static/Resourses/Logos/QH.png" alt="Logo">
+        <h1>Registro</h1>
+        <button id="openRegisterModal" type="button" class="btn">Iniciar</button>
+    </div>
+</div>
+
+
+
+
+
+<!-- Modal de registro -->
+<!-- Modal de registro -->
+<div id="registerModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <img src="{{ url_for('static', filename='Resourses/Logos/QH.png') }}" alt="Logo" class="modal-logo">
+        </div>
+        <div class="modal-body">
+            <h2>Únete a Nosotros</h2>
+                <div id="registerAlert" class="register-alert" style="display:none;">
+                Necesitas llenar todos los campos.
+                </div>
+            <form id="registerForm" method="POST" enctype="multipart/form-data">
+                
+                <div class="wrapper">
+                    <input type="text" name="nombre" id="nombre" >
+                    <label for="nombre"><span>Nombre</span></label>
+                </div>
+
+                <div class="wrapper">
+                    <input type="text" name="apellido_paterno" id="apellidoP" >
+                    <label for="apellidoP"><span>Apellido Paterno</span></label>
+                </div>
+
+                <div class="wrapper">
+                    <input type="text" name="apellido_materno" id="apellidoM" >
+                    <label for="apellidoM"><span>Apellido Materno</span></label>
+                </div>
+
+                <div class="wrapper">
+                    <input type="email" name="email" id="correo" >
+                    <label for="correo"><span>Correo</span></label>
+                </div>
+
+                <div class="wrapper">
+                    <input type="password" name="password" id="regPassword" >
+                    <label for="regPassword"><span>Contraseña</span></label>
+                </div>
+
+                <div class="wrapper">
+                    <select name="municipio" id="municipio" >
+                        <option value="">Seleccione...</option>
+                        <option value="Querétaro">Querétaro</option>
+                        <option value="San Juan del Río">San Juan del Río</option>
+                        <option value="El Marqués">El Marqués</option>
+                        <option value="Corregidora">Corregidora</option>
+                        <option value="Pedro Escobedo">Pedro Escobedo</option>
+                        <option value="Tequisquiapan">Tequisquiapan</option>
+                        <option value="Amealco de Bonfil">Amealco de Bonfil</option>
+                        <option value="Cadereyta de Montes">Cadereyta de Montes</option>
+                        <option value="Ezequiel Montes">Ezequiel Montes</option>
+                        <option value="Colón">Colón</option>
+                        <option value="Tolimán">Tolimán</option>
+                        <option value="Pinal de Amoles">Pinal de Amoles</option>
+                        <option value="Peñamiller">Peñamiller</option>
+                    </select>
+                </div>
+
+                <div class="wrapper">
+                    <input type="text" name="apodo" id="apodo" >
+                    <label for="apodo"><span>Apodo</span></label>
+                </div>
+
+                <div class="wrapper">
+                    <label for="foto_perfil">Foto de Perfil</label>
+                    <input type="file" name="foto_perfil" id="foto_perfil" accept="image/*">
+                </div>
+
+                <div class="modal-buttons">
+                    <button type="submit" class="btn">Registrar</button>
+                    <button type="reset" class="btn btn-reset">Limpiar</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+        
+        <div class="toggle-box">
+            
+            <div class="toggle-panel toggle-left">
+                <video autoplay muted loop class="box-video1">
+                    <source src="../static/Resourses/Video/QroHuertoPresentacion2025.mp4" type="video/mp4">
+                    Tu navegador no soporta videos HTML5.
+                  </video>
+                <h1>¡Hola, bienvenido!</h1>
+                <p>¿No tienes una cuenta QroHuerto?</p>
+                <button class="btn register-btn">Registrate</button>
+
+            </div>
+
+            <div class="toggle-panel toggle-right">
+                <video autoplay muted loop class="box-video2">
+                    <source src="../static/Resourses/Video/QroHuertoPresentacion2025.mp4" type="video/mp4">
+                    Tu navegador no soporta videos HTML5.
+                  </video>
+                <h1>¡Bienvenido de nuevo!</h1>
+                <p>¿Ya tienes una cuenta QroHuerto?
+                </p>
+                <button class="btn login-btn">Login</button>
+            </div>
+        </div>
+    </div>
+
+<script>
+function showLoginAlert(message) {
+    const container = document.getElementById("loginAlertContainer");
+
+    const alert = document.createElement("div");
+    alert.classList.add("login-alert");
+    alert.textContent = message;
+
+    container.appendChild(alert);
+
+    setTimeout(() => {
+        alert.remove();
+    }, 3000);
+}
+</script>
+
+<script>
+document.querySelector("form").addEventListener("submit", function(event) {
+    let user = document.getElementById("apodo").value.trim();
+    let pass = document.getElementById("password").value.trim();
+
+    if (user === "" || pass === "") {
+        event.preventDefault(); // evita enviar el formulario
+        showLoginAlert("Debes llenar todos los campos para iniciar sesión");
+    }
+});
+</script>
+
+
+
+<script>
+  const registerForm = document.getElementById('registerForm');
+const registerAlert = document.getElementById('registerAlert');
+
+registerForm.addEventListener('submit', function(e) {
+    let valid = true;
+
+    // Recorremos todos los inputs y selects del formulario
+    registerForm.querySelectorAll('input, select').forEach(field => {
+        if (!field.value) {
+            valid = false;
+        }
+    });
+
+    if (!valid) {
+        e.preventDefault(); // Evita enviar el formulario
+        registerAlert.style.display = 'block';
+
+        // Ocultar después de 3 segundos
+        setTimeout(() => {
+            registerAlert.style.display = 'none';
+        }, 3000);
+    }
+});
+
+</script>
+
+
+  <script  src="../static/JS/login.js"></script>
+    <script src="main.js"></script>
+    <script>
+      // Modal registro
+const openModalBtn = document.getElementById('openRegisterModal');
+const registerModal = document.getElementById('registerModal');
+
+openModalBtn.addEventListener('click', () => {
+    registerModal.style.display = 'flex';
+});
+
+window.addEventListener('click', (e) => {
+    if (e.target === registerModal) {
+        registerModal.style.display = 'none';
+    }
+});
+
+    </script>
+</body>
+</html>
+<!-- partial -->
+
+
+</body>
+</html>

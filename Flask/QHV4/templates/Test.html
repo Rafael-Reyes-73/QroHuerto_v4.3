@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QroHuerto - Test</title>
+  <link rel="stylesheet" href="../static/CSS/testmunicipio.css"> 
+  <link rel="stylesheet" href="../static/CSS/test.css"> 
+  <link rel="stylesheet" href="../static/CSS/TestTemporadas.css"> 
+  <link rel="icon" href="../static/Resourses/Logos/QH.png" type="image/x-icon" />
+  <style>
+
+
+  </style>
+</head>
+<body>
+  
+<div id="back-arrow">⬅</div>
+
+  <!-- Paso 1: Municipios (tu slider) -->
+  <section id="step1" class="active">
+    
+<h1 class="floating-title">¿En qué Municipio te encuentras?</h1>
+
+    <div class="carousel-container">
+      <button class="nav-arrow left">‹</button>
+      <div class="carousel-track">
+        <div class="card" data-index="0"><img src="../static/Resourses/Municipios/Amealco.png" alt="Amealco de Bonfil"></div>
+        <div class="card" data-index="1"><img src="../static/Resourses/Municipios/Arroyo seco.png" alt="Arroyo Seco"></div>
+        <div class="card" data-index="2"><img src="../static/Resourses/Municipios/Cadereyta de Montes.png" alt="Cadereyta de Montes"></div>
+        <div class="card" data-index="3"><img src="../static/Resourses/Municipios/Colon.png" alt="Colón"></div>
+        <div class="card" data-index="4"><img src="../static/Resourses/Municipios/Corregidora.png" alt="Corregidora"></div>
+        <div class="card" data-index="5"><img src="../static/Resourses/Municipios/Ezequiel montes.png" alt="Ezequiel Montes"></div>
+        <div class="card" data-index="6"><img src="../static/Resourses/Municipios/Huimilpan.png" alt="Huimilpan"></div>
+        <div class="card" data-index="7"><img src="../static/Resourses/Municipios/Jalpan.png" alt="Jalpan de Serra"></div>
+        <div class="card" data-index="8"><img src="../static/Resourses/Municipios/landa de matamoros.png" alt="Landa de Matamoros"></div>
+        <div class="card" data-index="9"><img src="../static/Resourses/Municipios/El Marquez.png" alt="El Marqués"></div>
+        <div class="card" data-index="10"><img src="../static/Resourses/Municipios/Pedro Escobedo2.png" alt="Pedro Escobedo"></div>
+        <div class="card" data-index="11"><img src="../static/Resourses/Municipios/Peñamiller.png" alt="Peñamiller"></div>
+        <div class="card" data-index="12"><img src="../static/Resourses/Municipios/Pinal.png" alt="Pinal de Amoles"></div>
+        <div class="card" data-index="13"><img src="../static/Resourses/Municipios/Ciudad de Queretaro.png" alt="Querétaro"></div>
+        <div class="card" data-index="14"><img src="../static/Resourses/Municipios/San Joaquín.png" alt="San Joaquín"></div>
+        <div class="card" data-index="15"><img src="../static/Resourses/Municipios/san juan del rio.png" alt="San Juan del Río"></div>
+        <div class="card" data-index="16"><img src="../static/Resourses/Municipios/Tequis.png" alt="Tequisquiapan"></div>
+        <div class="card" data-index="17"><img src="../static/Resourses/Municipios/Toliman.png" alt="Tolimán"></div>
+      </div>
+      <button class="nav-arrow right">›</button>
+    </div>
+
+    <div class="member-info">
+      <h2 class="member-name">Pedro Escobedo</h2>
+      <p class="member-role">Municipio de</p>
+    </div>
+
+    <div class="dots">
+      <!-- Tus dots -->
+      <div class="dot" data-index="0"></div>
+      <div class="dot" data-index="1"></div>
+      <div class="dot" data-index="2"></div>
+      <div class="dot" data-index="3"></div>
+      <div class="dot" data-index="4"></div>
+      <div class="dot" data-index="5"></div>
+      <div class="dot" data-index="6"></div>
+      <div class="dot" data-index="7"></div>
+      <div class="dot" data-index="8"></div>
+      <div class="dot" data-index="9"></div>
+      <div class="dot active" data-index="10"></div>
+      <div class="dot" data-index="11"></div>
+      <div class="dot" data-index="12"></div>
+      <div class="dot" data-index="13"></div>
+      <div class="dot" data-index="14"></div>
+      <div class="dot" data-index="15"></div>
+      <div class="dot" data-index="16"></div>
+      <div class="dot" data-index="17"></div>
+    </div>
+
+    <button id="next1" disabled>Siguiente</button>
+  </section>
+
+  <!-- Paso 2: Temporadas -->
+<section id="step2">
+  <h1 class="floating-title">¿En qué temporada te encuentras?</h1>
+
+  <div id="temporadas" class="page">
+    <div class='content'>
+      <div class='circle' data-name="Primavera">
+        <div class='circle_title'>
+          <h2>Primavera</h2>
+          <h3>en Querétaro</h3>
+        </div>
+        <div class='circle_inner'>
+          <div class='circle_inner__layer'>
+            <img src='../static/Resourses/Temporadas/fondo primavera.png'>
+          </div>
+          <div class='circle_inner__layer'>
+            <img src='../static/Resourses/Temporadas/arcoslsderpprimavera.png'>
+          </div>
+        </div>
+        <div class='content_shadow'></div>
+      </div>
+    </div>
+
+    <div class='content'>
+      <div class='circle' data-name="Verano">
+        <div class='circle_title'>
+          <h2>Verano</h2>
+          <h3>en Querétaro</h3>
+        </div>
+        <div class='circle_inner'>
+          <div class='circle_inner__layer'>
+            <img src='../static/Resourses/Temporadas/FONDOVERANO.png'>
+          </div>
+          <div class='circle_inner__layer'>
+            <img src='../static/Resourses/Temporadas/arcoasprimavera.png'>
+          </div>
+        </div>
+        <div class='content_shadow'></div>
+      </div>
+    </div>
+
+    <div class='content'>
+      <div class='circle' data-name="Otoño">
+        <div class='circle_title'>
+          <h2>Otoño</h2>
+          <h3>en Querétaro</h3>
+        </div>
+        <div class='circle_inner'>
+          <div class='circle_inner__layer'>
+            <img src='../static/Resourses/Temporadas/fondootoño.png'>
+          </div>
+          <div class='circle_inner__layer'>
+            <img src='../static/Resourses/Temporadas/suelootoño.png'>
+          </div>
+          <div class='circle_inner__layer'>
+            <img src='../static/Resourses/Temporadas/pc2.png'>
+          </div> 
+        </div>
+        <div class='content_shadow'></div>
+      </div>
+    </div>
+
+    <div class='content'>
+      <div class='circle' data-name="Invierno">
+        <div class='circle_title'>
+          <h2>Invierno</h2>
+          <h3>en Querétaro</h3>
+        </div>
+        <div class='circle_inner'>
+          <div class='circle_inner__layer'>
+            <img src='../static/Resourses/Temporadas/fondoinvierno.png'>
+          </div>
+        </div>
+        <div class='content_shadow'></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="particles-container"></div>
+  <button id="next2" disabled>Siguiente</button>
+</section>
+
+  <!-- Paso 3: Espacio -->
+<!-- Paso 3: Espacio -->
+<section id="step3">
+  <h1 class="floating-title">¿Con cuánto espacio cuentas para tu huerto?</h1>
+
+  <div id="espacios" class="page">
+    <div class='content'>
+      <div class='circle' data-name="Pequeño">
+        <div class='circle_title'>
+          <h2>Pequeño</h2>
+          <h3>Ideal para macetas o balcones</h3>
+        </div>
+        <div class='circle_inner'>
+          <div class='circle_inner__layer'>
+            <img src='../static/Resourses/Temporadas/pequeño.png'>
+          </div>
+        </div>
+        <div class='content_shadow'></div>
+      </div>
+    </div>
+
+    <div class='content'>
+      <div class='circle' data-name="Mediano">
+        <div class='circle_title'>
+          <h2>Mediano</h2>
+          <h3>Para un pequeño jardín</h3>
+        </div>
+        <div class='circle_inner'>
+          <div class='circle_inner__layer'>
+            <img src='../static/Resourses/Temporadas/mediano.png'>
+          </div>
+        </div>
+        <div class='content_shadow'></div>
+      </div>
+    </div>
+
+    <div class='content'>
+      <div class='circle' data-name="Grande">
+        <div class='circle_title'>
+          <h2>Grande</h2>
+          <h3>Patios o terrenos amplios</h3>
+        </div>
+        <div class='circle_inner'>
+          <div class='circle_inner__layer'>
+            <img src='../static/Resourses/Temporadas/grande.png'>
+          </div>
+        </div>
+        <div class='content_shadow'></div>
+      </div>
+    </div>
+
+    <div class='content'>
+      <div class='circle' data-name="Espacio suficiente">
+        <div class='circle_title'>
+          <h2>Suficiente</h2>
+          <h3>Sin limitaciones</h3>
+        </div>
+        <div class='circle_inner'>
+          <div class='circle_inner__layer'>
+            <img src='../static/Resourses/Temporadas/suficiente.png'>
+          </div>
+        </div>
+        <div class='content_shadow'></div>
+      </div>
+    </div>
+      <button id="next3" disabled>Ver Resultados</button>
+  </div>
+
+
+</section>
+
+
+<script>
+document.getElementById("next3").addEventListener("click", function () {
+    window.location.href = "/Resultados";
+});
+</script>
+
+<script>
+  const backArrow = document.getElementById('back-arrow');
+
+  backArrow.addEventListener('click', () => {
+    // Detectar qué sección está activa
+    const activeSection = document.querySelector('section.active');
+    const stepId = activeSection.id;
+
+    if (stepId === 'step1') {
+      // Si está en municipios, vuelve al index.html
+      window.location.href = '{{ url_for('index2') }}';
+    } else if (stepId === 'step2') {
+      changeStep(1); // vuelve al slider
+    } else if (stepId === 'step3') {
+      changeStep(2); // vuelve a temporada
+    }
+  });
+</script>
+  <script src="../static/JS/slidertest.js"></script>
+    <script src="../static/JS/Temporadastest.js"></script>
+  <script>
+    // Variables para guardar selecciones
+    let selectedMunicipio = null;
+    let selectedTemporada = null;
+    let selectedEspacio = null;
+
+    // Activar botón siguiente cuando se selecciona un municipio
+    document.querySelectorAll('.carousel-track .card').forEach(card => {
+      card.addEventListener('click', () => {
+        document.querySelectorAll('.carousel-track .card').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        selectedMunicipio = card.querySelector('img').alt;
+        document.getElementById('next1').disabled = false;
+      });
+    });
+
+    // Selección de temporadas
+document.querySelectorAll('#temporadas .circle').forEach(circle => {
+  circle.addEventListener('click', () => {
+    document.querySelectorAll('#temporadas .circle').forEach(c => c.classList.remove('selected'));
+    circle.classList.add('selected');
+    selectedTemporada = circle.dataset.name;
+    document.getElementById('next2').disabled = false;
+  });
+});
+
+
+    // Selección de espacios
+    document.querySelectorAll('#espacios .circle').forEach(circle => {
+      circle.addEventListener('click', () => {
+        document.querySelectorAll('#espacios .circle').forEach(c => c.classList.remove('selected'));
+        circle.classList.add('selected');
+        selectedEspacio = circle.dataset.name;
+        document.getElementById('next3').disabled = false;
+      });
+    });
+
+    // Botones siguiente
+    document.getElementById('next1').addEventListener('click', () => changeStep(2));
+    document.getElementById('next2').addEventListener('click', () => changeStep(3));
+    document.getElementById('next3').addEventListener('click', () => {
+      document.getElementById('summary').innerText = 
+        `Has elegido: ${selectedMunicipio}, ${selectedTemporada}, Espacio ${selectedEspacio}`;
+      changeStep(4);
+    });
+
+    // Cambio de secciones
+    function changeStep(step) {
+      document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(`step${step}`).classList.add('active');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"rel="stylesheet"/>
+
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../static/CSS/header.css" />
+    <link rel="stylesheet" href="../static/CSS/botones.css" />
+    <link rel="stylesheet" href="../static/CSS/Nosotros.css" />
+    <title>QroHuerto - Nosotros</title>
+    <link rel="icon" href="../static/Resourses/Logos/QH.png" type="image/x-icon" />
+  </head>
+<body style="
+  background-image: url('../static/Resourses/Backgrounds/Background5.png');
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: top center;
+">
+
+<div id="scroll-message">Scrolea hacia abajo</div>
+
+{% include 'components/header.html' %}
+
+
+
+<div class="muro" id="muro" style="position: relative; background: transparent; padding: 60px 0 20px;">
+
+  <!-- Texto grande de fondo -->
+  <h1 style="
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 8rem;
+    color: rgba(255, 255, 255, 0.158);
+    font-weight: 900;
+    user-select: none;
+    pointer-events: none;
+    white-space: nowrap;
+    z-index: 0;
+    font-family: 'Segoe UI', sans-serif;
+    letter-spacing: 10px;
+    text-transform: uppercase;
+  ">
+    NOSOTROS
+  </h1>
+
+  <!-- Texto principal -->
+  <h1 style="
+    position: relative;
+    text-align: center; 
+    color: #fff; 
+    font-family: 'Segoe UI', sans-serif; 
+    font-size: 3rem; 
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+    z-index: 1;
+  ">
+    Conocenos
+  </h1>
+</div>
+
+<!-- SECCIÓN NOSOTROS -->
+<section id="nosotros" style="
+    background: #fff; 
+    color: #1a1a1a; 
+    padding: 60px 20px 80px;
+    border-radius: 20px;
+    text-align: center; 
+    font-family: 'Montserrat', sans-serif;
+    max-width: 1200px;
+    margin: auto;
+">
+
+  <!-- Valores y Objetivos -->
+  <h2 style="
+    font-size: 2.8rem; 
+    margin-bottom: 40px; 
+    font-weight: 700; 
+    color: #222;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  ">
+    Nuestros Valores y Objetivos
+  </h2>
+
+  <div style="
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    gap: 50px; 
+    margin-bottom: 80px;
+  ">
+    <!-- Cada valor -->
+ <div style="
+  flex: 1 1 250px; 
+  max-width: 280px; 
+  background: linear-gradient(135deg, #6BBE66 0%, #079A2D 100%);
+  padding: 30px 20px; 
+  border-radius: 15px; 
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, background 0.3s ease;
+  cursor: default;
+" onmouseover="this.style.transform='translateY(-8px)'; this.style.background='linear-gradient(135deg, #079A2D 0%, #6BBE66 100%)';" onmouseout="this.style.transform='translateY(0)'; this.style.background='linear-gradient(135deg, #a8e063 0%, #56ab2f 100%)';">
+  <i class="fas fa-leaf" style="font-size:50px; color:#ffffff; margin-bottom:20px;"></i>
+  <h3 style="font-weight: 700; margin-bottom: 15px; color: #333;">Sustentabilidad</h3>
+  <p style="color:#555; font-size:1rem; line-height:1.5;">
+    Promovemos el cuidado del medio ambiente y el uso responsable de los recursos naturales.
+  </p>
+</div>
+
+<div style="
+  flex: 1 1 250px; 
+  max-width: 280px; 
+  background: linear-gradient(135deg, #ff9966 0%, #ff5e62 100%);
+  padding: 30px 20px; 
+  border-radius: 15px; 
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, background 0.3s ease;
+  cursor: default;
+" onmouseover="this.style.transform='translateY(-8px)'; this.style.background='linear-gradient(135deg, #ff5e62 0%, #ff9966 100%)';" onmouseout="this.style.transform='translateY(0)'; this.style.background='linear-gradient(135deg, #ff9966 0%, #ff5e62 100%)';">
+  <i class="fas fa-apple-alt" style="font-size:50px; color:#ffffff; margin-bottom:20px;"></i>
+  <h3 style="font-weight: 700; margin-bottom: 15px; color: #333;">Alimentación Saludable</h3>
+  <p style="color:#555; font-size:1rem; line-height:1.5;">
+    Fomentamos el consumo de frutas y verduras frescas cultivadas por ti mismo.
+  </p>
+</div>
+
+<div style="
+  flex: 1 1 250px; 
+  max-width: 280px; 
+  background: linear-gradient(135deg, #2196f3 0%, #21cbf3 100%);
+  padding: 30px 20px; 
+  border-radius: 15px; 
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, background 0.3s ease;
+  cursor: default;
+" onmouseover="this.style.transform='translateY(-8px)'; this.style.background='linear-gradient(135deg, #21cbf3 0%, #2196f3 100%)';" onmouseout="this.style.transform='translateY(0)'; this.style.background='linear-gradient(135deg, #2196f3 0%, #21cbf3 100%)';">
+  <i class="fas fa-chalkboard-teacher" style="font-size:50px; color:#ffffff; margin-bottom:20px;"></i>
+  <h3 style="font-weight: 700; margin-bottom: 15px; color: #333;">Educación Ambiental</h3>
+  <p style="color:#555; font-size:1rem; line-height:1.5;">
+    Enseñamos a niños y adultos cómo crear huertos urbanos y cuidar la naturaleza.
+  </p>
+</div>
+
+    
+<div style="
+  flex: 1 1 250px; 
+  max-width: 280px; 
+  background: linear-gradient(135deg, #FFD54F 0%, #FFC107 100%);
+  padding: 30px 20px; 
+  border-radius: 15px; 
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, background 0.3s ease;
+  cursor: default;
+" onmouseover="this.style.transform='translateY(-8px)'; this.style.background='linear-gradient(135deg, #FFC107 0%, #FFD54F 100%)';" onmouseout="this.style.transform='translateY(0)'; this.style.background='linear-gradient(135deg, #FFD54F 0%, #FFC107 100%)';">
+  <i class="fas fa-laptop-code" style="font-size:50px; color:#ffffff; margin-bottom:20px;"></i>
+  <h3 style="font-weight: 700; margin-bottom: 15px; color: #333;">Innovación</h3>
+  <p style="color:#555; font-size:1rem; line-height:1.5;">
+    Usamos la tecnología para facilitar el aprendizaje y el seguimiento de tu huerto.
+  </p>
+</div>
+  
+  </div>
+
+  <!-- Impacto en la comunidad -->
+  <h2 style="
+    font-size: 2.8rem; 
+    margin-bottom: 25px; 
+    font-weight: 700; 
+    color: #222;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  ">
+    Impacto en la Comunidad
+  </h2>
+  <p style="
+    max-width: 850px; 
+    margin: 0 auto 60px; 
+    font-size: 1.25rem; 
+    line-height: 1.8; 
+    color: #444;
+  ">
+    Con QroHuerto buscamos que cada hogar en Querétaro pueda disfrutar de alimentos frescos
+    y cultivar una cultura más verde y responsable. Nuestro proyecto tiene como meta
+    impulsar la autosuficiencia alimentaria y la conexión con la naturaleza, inspirando
+    a más familias a sumarse a esta iniciativa.
+  </p>
+
+  <!-- Llamado a la acción -->
+  <div style="margin-top:40px;">
+    <h2 style="
+      font-size: 2.4rem; 
+      margin-bottom: 20px; 
+      font-weight: 700; 
+      color: #222;
+      text-transform: uppercase;
+      letter-spacing: 1.3px;
+    ">
+      ¡Únete a nuestra misión!
+    </h2>
+    <p style="
+      font-size: 1.25rem; 
+      margin-bottom: 30px; 
+      color: #333;
+    ">
+      Crea tu propio huerto y forma parte de un Querétaro más verde.
+    </p>
+    <a href="{{ url_for('catalogo') }}" style="
+      background:linear-gradient(to right, #079A2D, #6BBE66); 
+      color: white; 
+      padding: 10px 50px; 
+      border-radius: 20px; 
+      text-decoration: none; 
+      font-size: 1.25rem;
+      font-weight: 600;
+      box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    " 
+    onmouseover="this.style.backgroundColor='#43a047'; this.style.boxShadow='0 8px 20px rgba(67, 160, 71, 0.6)';" 
+    onmouseout="this.style.backgroundColor='#4CAF50'; this.style.boxShadow='0 5px 15px rgba(76, 175, 80, 0.4)';">
+      Explorar Semillas
+    </a>
+  </div>
+
+</section>
+
+
+<!-- SECCIÓN VERSIONES QROHUERTO -->
+<section id="versiones">
+  
+  <!-- Título principal -->
+  <h2>
+    QroHuerto V.4.1
+  </h2>
+  
+  <!-- Subtítulo Nuestra Trayectoria -->
+  <h3>
+    Nuestra Trayectoria
+  </h3>
+
+  <!--   <div style="margin-bottom:0px;">
+    <img src="Resourses/Logos/QH uerto.png" alt="Logo QroHuerto" style="max-width:150px; height:auto;">
+  </div> -->
+
+
+  <!-- Contenedor versiones -->
+  <div style="max-width:900px; margin:auto; display:flex; flex-direction: column; gap:40px;">
+
+    <!-- Versión 1 -->
+    <div style="display:flex; align-items:center; gap:20px; text-align:left;">
+      <div style="flex-shrink:0;">
+        <img src="../static/Resourses/Logos/QroHuertoOld.png" alt="Versión 1.0" style="width:120px; height:auto; border-radius:8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+      </div>
+      <div>
+        <h3 class="tagyellow">Versión 1.0</h3>
+        <p style="margin:10px 0 0; font-size:1.1rem; color:#555;">
+          Primer prototipo de QroHuerto, con información básica sobre semillas y cuidados.
+        </p>
+      </div>
+    </div>
+
+    <!-- Versión 2 -->
+    <div style="display:flex; align-items:center; gap:20px; text-align:left;">
+      <div style="flex-shrink:0;">
+        <img src="../static/Resourses/Logos/QroHuerto Logo8.png" alt="Versión 2.0" style="width:120px; height:auto; border-radius:8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+      </div>
+      <div>
+        <h3 class="tagyellow">Versión 2.0</h3>
+        <p style="margin:10px 0 0; font-size:1.1rem; color:#555;">
+          Se agregaron recomendaciones de temporada y guías interactivas de siembra.
+        </p>
+      </div>
+    </div>
+
+    <!-- Versión 3 -->
+    <div style="display:flex; align-items:center; gap:20px; text-align:left;">
+      <div style="flex-shrink:0;">
+        <img src="../static/Resourses/Logos/QroHu4.png" alt="Versión 3.0" style="width:120px; height:auto; border-radius:8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+      </div>
+      <div>
+        <h3 class="tagyellow">Versión 3.0</h3>
+        <p style="margin:10px 0 0; font-size:1.1rem; color:#555;">
+          Implementación de cuentas de usuario y sección “Mi Huerto” personalizada.
+        </p>
+      </div>
+    </div>
+
+    <!-- Versión 4 -->
+    <div style="display:flex; align-items:center; gap:20px; text-align:left;">
+      <div style="flex-shrink:0;">
+        <img src="../static/Resourses/Logos/QH.png" alt="Versión 4.0" style="width:120px; height:auto; border-radius:8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+      </div>
+      <div>
+        <h3 class="tagyellow">Versión 4.1 (Actual)</h3>
+        <p style="margin:10px 0 0; font-size:1.1rem; color:#555;">
+          Dashboard optimizado, catálogo completo de semillas y funcionalidades de comunidad.
+        </p>
+      </div>
+    </div>
+    
+        <!-- Versión 5 Proximamente -->
+    <div style="display:flex; align-items:center; gap:20px; text-align:left;">
+      <div style="flex-shrink:0;">
+        <img src="../static/Resourses/Logos/QH.png" alt="Versión 4.0" style="width:120px; height:auto; border-radius:8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+      </div>
+      <div>
+        <h3 class="tagyellow">Versión 5 Proximamente</h3>
+        <p style="margin:10px 0 0; font-size:1.1rem; color:#555;">
+          Un QroHuerto completamente reinventado: rendimiento superior, interfaz 
+  moderna, nuevas herramientas de cultivo inteligente y una experiencia 
+  de usuario, arquitectura de nueva generación gracias a React, FastAPI y PostgreSQL. 
+  “Mi Huerto” será más personal, rápido y potente que nunca.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- SECCIÓN NUESTRA HISTORIA -->
+<section id="nuestra-historia">
+  <h2>QroHuerto</h2>
+  <p>
+    QroHuerto nació como un hobby para su fundador, Rafael Reyes. 
+    Al principio, desconocía por completo los pasos y cuidados necesarios para construir un huerto en casa, 
+    lo que convirtió el proceso en un reto lleno de errores, descubrimientos y aprendizaje constante. 
+    <br><br>
+    Con el tiempo, este pasatiempo se transformó en una verdadera pasión. 
+    Cada dificultad que enfrentó inspiró la creación de QroHuerto, 
+    un proyecto pensado para guiar a otros y facilitarles lo que alguna vez fue complicado: 
+    desde la elección de semillas hasta la cosecha de sus propios alimentos. 
+    <br><br>
+    Hoy, QroHuerto refleja ese viaje de dedicación y superación, 
+    buscando que cualquier persona pueda disfrutar de cultivar su propio huerto sin importar su experiencia.
+  </p>
+</section>
+
+<!-- SECCIÓN 3 IMÁGENES HORIZONTALES -->
+<section id="galeria" style="background:white; padding:60px 20px; font-family:'Montserrat', sans-serif;">
+  <div style="display:flex; justify-content:center; gap:30px; flex-wrap:wrap; max-width:1200px; margin:auto;">
+    <div style="flex:1; min-width:250px; display:flex; justify-content:center;">
+      <img src="../static/Resourses/Logos/ADAS.png" alt="Imagen 1" style="width:100%; max-width:350px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.2);">
+    </div>
+    <div style="flex:1; min-width:250px; display:flex; justify-content:center;">
+      <img src="../static/Resourses/Logos/QROACTU.png" alt="Imagen 2" style="width:100%; max-width:350px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.2);">
+    </div>
+    <div style="flex:1; min-width:250px; display:flex; justify-content:center;">
+      <img src="../static/Resourses/Logos/QOPlay.png" alt="Imagen 3" style="width:100%; max-width:350px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.2);">
+    </div>
+  </div>
+</section>
+
+
+<!-- SECCIÓN FUNDADOR -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+
+<section id="fundador" style="background:white; padding:0px 20px; position:relative; font-family:'Montserrat', sans-serif;">
+  <div style="
+    max-width:1200px; 
+    max-height: 900px;
+    margin:auto; 
+    display:flex; 
+    align-items:center; 
+    justify-content:center; 
+    gap:0px; 
+    flex-wrap:wrap;
+    position: relative;
+  ">
+
+    <!-- LADO IZQUIERDO: Logo / Imagen -->
+    <div style="flex:1; display:flex; justify-content:center; min-width:250px;">
+      <img src="../static/Resourses/Nosotros/QH.png" alt="Logo Fundador" style="max-width:220px; height:auto;">
+    </div>
+
+    <!-- CENTRO: Información -->
+    <div style="flex:2; text-align:center; min-width:300px; position: relative;">
+
+      <!-- Texto grande de fondo -->
+      <h2 style="
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 5rem;
+        color: rgba(85, 85, 85, 0.1);
+        font-weight: 700;
+        user-select: none;
+        pointer-events: none;
+        white-space: nowrap;
+        z-index: 0;
+      ">
+        RafaelReyes
+      </h2>
+
+      <!-- Título principal -->
+      <h2 style="font-size:3.5rem; color:#555; margin-bottom:10px; position: relative; z-index: 1;">
+        Rafael Reyes
+      </h2>
+
+      <p style="font-size:1.1rem; color:#000; font-weight:500; margin-bottom:25px; position: relative; z-index: 1;">
+        Fundador y Administrador de QroHuerto
+      </p>
+
+      <p style="max-width:600px; margin:auto; font-size:1rem; line-height:1.6; color:#555; margin-bottom:30px; position: relative; z-index: 1;">
+        Apasionado por la tecnología, el desarrollo web y el impulso de la agricultura urbana en Querétaro.  
+        Rafael creó <strong>QroHuerto</strong> para facilitar que cada hogar pueda cultivar sus propios alimentos frescos 
+        y fomentar un estilo de vida más sostenible.
+      </p>
+
+      <h3 style="font-size:1.2rem; margin-bottom:10px; color:#000; position: relative; z-index: 1;">Visión y Dirección</h3>
+      <p style="max-width:500px; margin:auto; font-size:0.95rem; color:#777; position: relative; z-index: 1;">
+        “Cada línea de código y cada idea en QroHuerto están guiadas por la visión 
+        de crear un Querétaro más verde y autosuficiente.”
+      </p>
+    </div>
+
+    <!-- LADO DERECHO: Imagen decorativa -->
+    <div style="
+      flex:2; /* Más espacio para la imagen */
+      display:flex; 
+      justify-content:center; 
+      position:relative; 
+      min-width:300px;
+    ">
+      <img src="../static/Resourses/Nosotros/RAFAELFRONT5.png" 
+           style="width:100%; max-width:1200px; height:auto;">
+    </div>
+
+  </div>
+</section>
+<section id="team-header" style="position: relative; height: 200px; background: #fff; font-family: 'Montserrat', sans-serif; display: flex; align-items: center; justify-content: center;">
+
+  <h2 style="
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 8rem;
+    color: rgba(0, 0, 0, 0.05);
+    font-weight: 900;
+    user-select: none;
+    pointer-events: none;
+    white-space: nowrap;
+    z-index: 0;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+  ">
+    MyTeam
+  </h2>
+
+  <h3 style="
+    position: relative;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333;
+    z-index: 1;
+    margin: 0;
+  ">
+   Somos QroHuerto
+  </h3>
+
+</section>
+
+<div class="cards-container" id="cards-container" style="background: #FFF; font-family: 'Poppins', sans-serif;">
+  
+
+
+  <div class="card c2">
+      <h3 style="color:white; margin-top:480px;">Santiago</h3>
+      <p style="color:#fff; text-align:center;">Estratega de Marketing y Comunicación</p>
+    <div class="social-icons">
+      <i class="fab fa-instagram" aria-label="Instagram" title="Instagram"></i>
+      <i class="fab fa-facebook-f" aria-label="Facebook" title="Facebook"></i>
+      <i class="fab fa-tiktok" aria-label="TikTok" title="TikTok"></i>
+    </div>
+  </div>
+
+  <div class="card c3">
+      <h3 style="color:white; margin-top:480px;">Uribe</h3>
+      <p style="color:#fff; text-align:center;">Especialista en Contenido Agrícola</p>
+    <div class="social-icons">
+      <i class="fab fa-instagram" aria-label="Instagram" title="Instagram"></i>
+      <i class="fab fa-facebook-f" aria-label="Facebook" title="Facebook"></i>
+      <i class="fab fa-tiktok" aria-label="TikTok" title="TikTok"></i>
+    </div>
+  </div>
+
+  <div class="card c4">
+      <h3 style="color:white; margin-top:480px;">Martinez</h3>
+      <p style="color:#fff; text-align:center;">Administradora de Base de Datos</p>
+    <div class="social-icons">
+      <i class="fab fa-instagram" aria-label="Instagram" title="Instagram"></i>
+      <i class="fab fa-facebook-f" aria-label="Facebook" title="Facebook"></i>
+      <i class="fab fa-tiktok" aria-label="TikTok" title="TikTok"></i>
+    </div>
+  </div>
+
+  <div class="card c5">
+      <h3 style="color:white; margin-top:480px;">Martinez</h3>
+      <p style="color:#fff; text-align:center;">Investigadora de Cultivos y Metodologías Ágiles</p>
+    <div class="social-icons">
+      <i class="fab fa-instagram" aria-label="Instagram" title="Instagram"></i>
+      <i class="fab fa-facebook-f" aria-label="Facebook" title="Facebook"></i>
+      <i class="fab fa-tiktok" aria-label="TikTok" title="TikTok"></i>
+    </div>
+  </div>
+
+  <div class="card c6">
+      <h3 style="color:white; margin-top:480px;">Martinez</h3>
+      <p style="color:#fff; text-align:center;">Desarrollador Backend y Gestión de Contenido</p>
+    <div class="social-icons">
+      <i class="fab fa-instagram" aria-label="Instagram" title="Instagram"></i>
+      <i class="fab fa-facebook-f" aria-label="Facebook" title="Facebook"></i>
+      <i class="fab fa-tiktok" aria-label="TikTok" title="TikTok"></i>
+    </div>
+  </div>
+
+    <div class="card c7">
+      <h3 style="color:white; margin-top:480px;">Axel</h3>
+      <p style="color:#fff; text-align:center;">Ingeniero de Infraestructura (Docker & Deployments)</p>
+    <div class="social-icons">
+      <i class="fab fa-instagram" aria-label="Instagram" title="Instagram"></i>
+      <i class="fab fa-facebook-f" aria-label="Facebook" title="Facebook"></i>
+      <i class="fab fa-tiktok" aria-label="TikTok" title="TikTok"></i>
+    </div>
+  </div>
+
+
+</div>
+
+<div style="height: calc(110vh * 6);"></div> <!-- Para 7 tarjetas -->
+
+
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+<script>
+  const cardsContainer = document.getElementById("cards-container");
+const cards = document.querySelectorAll(".card");
+const viewportWidth = window.innerWidth;
+const cardCount = cards.length;
+const cardMargin = 3;
+const totalMargin = cardMargin * cardCount;
+const activeWidth = viewportWidth * 0.5;
+const remainingWidth = viewportWidth - activeWidth - totalMargin;
+const otherCardWidth = remainingWidth / (cardCount - 1);
+
+let animating = false;
+let currentWidths = Array(cardCount).fill(otherCardWidth);
+let currentScales = Array(cardCount).fill(1);
+
+function lerp(start, end, t) {
+  return start + (end - start) * t;
+}
+
+function updateWidths(scrollY) {
+  animating = false;
+
+  const containerTop = cardsContainer.offsetTop;
+  const relativeScroll = scrollY - containerTop;
+
+  if(relativeScroll < 0) return; // No hacer nada si aún no llegó
+
+  const maxScroll = window.innerHeight * (cardCount - 1);
+  const clampedScroll = Math.min(relativeScroll, maxScroll);
+
+  const activeIndex = Math.floor(clampedScroll / window.innerHeight);
+  const sectionProgress = (clampedScroll % window.innerHeight) / window.innerHeight;
+
+  if (activeIndex >= cardCount - 1) {
+    const equalWidth = (viewportWidth - totalMargin) / cardCount;
+    for(let i = 0; i < cardCount; i++){
+      currentWidths[i] = lerp(currentWidths[i], equalWidth, 0.1);
+      currentScales[i] = lerp(currentScales[i], 1, 0.1);
+      cards[i].style.width = currentWidths[i] + "px";
+      cards[i].style.transform = `scale(${currentScales[i]})`;
+      cards[i].classList.remove("active");
+    }
+  } else {
+    for(let i = 0; i < cardCount; i++){
+      let targetWidth, targetScale;
+
+      if(i === activeIndex){
+        targetWidth = lerp(activeWidth, otherCardWidth, sectionProgress);
+        targetScale = lerp(1.03, 1, sectionProgress);
+      } else if(i === activeIndex + 1 && i < cardCount){
+        targetWidth = lerp(otherCardWidth, activeWidth, sectionProgress);
+        targetScale = lerp(1, 1.03, sectionProgress);
+      } else {
+        targetWidth = otherCardWidth;
+        targetScale = 1;
+      }
+
+      currentWidths[i] = lerp(currentWidths[i], targetWidth, 0.1);
+      currentScales[i] = lerp(currentScales[i], targetScale, 0.1);
+
+      cards[i].style.width = currentWidths[i] + "px";
+      cards[i].style.transform = `scale(${currentScales[i]})`;
+
+      if(currentScales[i] > 1.05){
+        cards[i].classList.add("active");
+      } else {
+        cards[i].classList.remove("active");
+      }
+    }
+  }
+
+  requestAnimationFrame(() => updateWidths(scrollY));
+  animating = true;
+}
+
+window.addEventListener("scroll", () => {
+  const scrollY = window.scrollY;
+  if(!animating) {
+    requestAnimationFrame(() => updateWidths(scrollY));
+    animating = true;
+  }
+});
+
+updateWidths(window.scrollY);
+window.addEventListener("resize", () => location.reload());
+
+</script>
+
+
+  <!-- SVG filter -->
+  <svg width="0" height="0" style="position: absolute;">
+    <filter id="goo" x="-50%" y="-50%" width="200%" height="200%">
+      <feComponentTransfer>
+        <feFuncA type="discrete" tableValues="0 1"></feFuncA>
+      </feComponentTransfer>
+      <feGaussianBlur stdDeviation="5"></feGaussianBlur>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="-5 11"></feFuncA>
+      </feComponentTransfer>
+    </filter>
+  </svg>
+      <script>
+    // Aplica el movimiento del fondo en cada botón
+    document.querySelectorAll("button").forEach(btn => {
+      btn.addEventListener("pointermove", (e) => {
+        const rect = btn.getBoundingClientRect();
+        btn.style.setProperty('--x', ((e.clientX - rect.x) / rect.width) * 100);
+        btn.style.setProperty('--y', ((e.clientY - rect.y) / rect.height) * 100);
+      });
+    });
+  </script>
+<script>
+  window.addEventListener('load', () => {
+    const header = document.querySelector('header');
+    header.classList.add('visible');
+  });
+</script>
+
+
+<script>
+  window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    const logoImg = document.getElementById('logo-img');
+
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled');
+      logoImg.src = '../static/Resourses/Logos/QH uerto C.png'; // nuevo logo
+    } else {
+      header.classList.remove('scrolled');
+      logoImg.src = '../static/Resourses/Logos/QH uerto.png'; // logo original
+    }
+  });
+</script>
+
+
+<script>
+  window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    const profileScroll = document.getElementById('profile-on-scroll');
+    const profileTopMenu = document.querySelector('.divusuario nav');
+
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled');
+      profileScroll.style.display = 'flex'; // mostrar perfil al lado de "Nosotros"
+      profileTopMenu.style.display = 'none'; // ocultar el top menu original
+    } else {
+      header.classList.remove('scrolled');
+      profileScroll.style.display = 'none'; // ocultar perfil abajo
+      profileTopMenu.style.display = 'inline-flex'; // mostrar top menu
+    }
+  });ss
+</script>
+  <script>
+  ScrollReveal().reveal('.muro, #nosotros, #fundador, .cards-container', {
+    distance: '50px',      // Distancia de deslizamiento
+    origin: 'bottom',      // Desde abajo hacia arriba
+    duration: 1000,        // Duración en ms
+    easing: 'ease-out',    // Suavizado
+    interval: 200          // Efecto escalonado si hay varios elementos
+  });
+</script>
+    <script src="main.js"></script>
+  </body>
+</html>

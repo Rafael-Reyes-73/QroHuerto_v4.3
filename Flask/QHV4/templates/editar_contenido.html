@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Editar Contenido</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/ediconte.css') }}">
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Editar Contenido</h2>
+
+    <form action="{{ url_for('editar_contenido', id=contenido['id']) }}" method="POST" enctype="multipart/form-data" novalidate>
+      
+      <label for="slider">Selecciona Slider:</label>
+      <select id="slider" name="slider" required>
+        <option value="slider1" {% if contenido.slider == 'slider1' %}selected{% endif %}>Slider 1</option>
+        <option value="slider2" {% if contenido.slider == 'slider2' %}selected{% endif %}>Slider 2</option>
+        <option value="slider3" {% if contenido.slider == 'slider3' %}selected{% endif %}>Slider 3</option>
+        <option value="slider4" {% if contenido.slider == 'slider4' %}selected{% endif %}>Slider 4</option>
+        <option value="slider5" {% if contenido.slider == 'slider5' %}selected{% endif %}>Slider 5</option>
+      </select>
+
+      <label for="titulo_inicial">Título Inicial:</label>
+      <input type="text" id="titulo_inicial" name="titulo_inicial" value="{{ contenido.titulo_inicial }}" >
+
+      <label for="conector">Conector:</label>
+      <input type="text" id="conector" name="conector" value="{{ contenido.conector }}">
+
+      <label for="titulo_final">Título Final:</label>
+      <input type="text" id="titulo_final" name="titulo_final" value="{{ contenido.titulo_final }}">
+
+      <label for="anuncio">Anuncio:</label>
+      <textarea id="anuncio" name="anuncio" rows="3">{{ contenido.anuncio }}</textarea>
+
+      <label for="notas">Notas para el desarrollador:</label>
+      <textarea id="notas" name="notas" rows="3">{{ contenido.notas }}</textarea>
+
+      <div class="current-image">
+        <p>Imagen actual:</p>
+        <img src="{{ url_for('static', filename='uploads/' ~ contenido.imagen) }}" alt="Imagen actual" />
+      </div>
+
+      <label for="imagen">Nueva imagen (opcional):</label>
+      <input type="file" id="imagen" name="imagen" accept="image/*">
+
+      <button type="submit">Guardar Cambios</button>
+    </form>
+  </div>
+
+</body>
+</html>

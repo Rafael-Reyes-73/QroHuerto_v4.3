@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"rel="stylesheet"/>
+
+    <link rel="stylesheet" href="../static/CSS/styles.css" />
+    <link rel="stylesheet" href="../static/CSS/header.css" />
+    <link rel="stylesheet" href="../static/CSS/botones.css" />
+    <link rel="stylesheet" href="../static/CSS/catalogo.css" />
+    <link rel="stylesheet" href="../static/CSS/cards.css" />
+    <title>QroHuerto - Catalogo</title>
+    <link rel="icon" href="../static/Resourses/Logos/QH.png" type="image/x-icon" />
+  </head>
+  <style>
+    .muro {
+  opacity:1;
+  transform: translateY(50px); /* o translateY(100px) si quieres que suba más */
+  transition: opacity 1.5s ease, transform 1.5s ease;
+}
+
+.muro.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.muro {
+  top: 0px;
+  position: relative;
+  max-width: 1100px;
+  height: auto;
+  margin: 90px auto; /* <--- EFECO DIFERENTE */
+/*  border: 3px solid none;   
+  background: rgba(48, 9, 9, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px); */
+  overflow: hidden; 
+}
+
+
+.wrapper{
+  text-align:center;
+  margin:50px auto;
+}
+
+.tabs{
+  margin-top:0px;
+  font-size:15px;
+  padding:0px;
+  list-style:none;
+  background:#fff;
+  box-shadow:0px 5px 20px rgba(0,0,0,0.1);
+  display:inline-block;
+  border-radius:50px;
+  position:relative;
+}
+
+.tabs a{
+  text-decoration:none;
+  color: #777;
+  text-transform:uppercase;
+  padding:10px 20px;
+  display:inline-block;
+  position:relative;
+  z-index:1;
+  transition-duration:0.6s;
+}
+
+.tabs a.active{
+  color:#fff;
+}
+
+.tabs a i{
+  margin-right:5px;
+}
+
+
+.tabs .selector{
+  height:100%;
+  display:inline-block;
+  position:absolute;
+  left:0px;
+  top:0px;
+  z-index:1;
+  border-radius:50px;
+  transition-duration:0.6s;
+  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  background: #6BBE66;
+  background: -moz-linear-gradient(45deg, #6BBE66 0%, #079A2D 100%);
+  background: -webkit-linear-gradient(45deg, #6BBE66 0%,#079A2D 100%);
+  background: linear-gradient(45deg, #6BBE66 0%,#079A2D 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6BBE66', endColorstr='#079A2D',GradientType=1 );
+}
+
+
+.tab-content {
+  margin-top: 30px;
+  text-align: left;
+  padding: 20px;
+}
+
+.content-tab {
+  display: none;
+}
+
+.content-tab.active-tab {
+  display: block;
+  animation: fadeIn 0.6s ease;
+}
+
+.info-bar {
+  margin: 0 auto;
+  width: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  border-radius: 20px 20px 0 0;
+  font-family: 'Segoe UI', sans-serif;
+  gap: 10px;
+
+  /* Glassmorphism */
+  background: #ffffff; /* fondo blanco */
+  /*background: rgba(255, 255, 255, 0.1);  fondo semitransparente */
+  backdrop-filter: blur(10px); /* desenfoque de fondo */
+  -webkit-backdrop-filter: blur(10px); /* soporte para Safari */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* borde tenue */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* sombra suave */
+}
+
+
+
+.back-btn {
+  background-image: linear-gradient(to right, #EE832F, #F6A73D);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.info-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.name-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.label {
+  font-weight: bold;
+  color: #444;
+}
+
+.name-tag {
+  background-image: linear-gradient(to right, #EE832F, #F6A73D);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 15px;
+  font-weight: bold;
+}
+
+.type-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 0px; /* Alineado al nombre */
+}
+
+.type-label {
+  font-size: 12px;
+  color: #555;
+}
+
+.type-tag {
+  background-image: linear-gradient(to right, #079A2D, #6BBE66);
+  color: white;
+  padding: 2px 8px;
+  font-size: 12px;
+  border-radius: 12px;
+}
+
+.bookmark-btn {
+   background-image: linear-gradient(to right, #EE832F, #F6A73D);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.play-btn {
+  background-color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  width: 80px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.play-btn img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+  </style>
+<body style="
+  background-image: url('../static/Resourses/Backgrounds/fav/Back4.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-attachment: fixed;
+">
+
+
+<div id="scroll-message">Scrolea hacia abajo</div>
+
+{% include 'components/header.html' %}
+
+
+
+<div class="muro" id="muro">
+        <h1 style="text-align: center; color: #ffffff; font-family: 'Segoe UI', sans-serif; padding: 20px 0 10px; font-size: 32px;">
+    Catálogo de Semillas
+  </h1>
+<div style="text-align: center; margin-bottom: 20px;">
+  <input
+    type="text"
+    placeholder="Buscar planta..."
+    style="
+      padding: 10px 20px;
+      width: 300px;
+      font-size: 16px;
+      border-radius: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.308);
+  background: rgba(255, 255, 255, 0.37);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* Para compatibilidad en Safari */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  color: white; /* O el color que quieras que combine con el fondo */
+      outline: none;
+      transition: 0.3s ease all;
+    "
+    onfocus="this.style.borderColor='rgba(255,255,255,0.6)'"
+    onblur="this.style.borderColor='rgba(255,255,255,0.3)'"
+  >
+</div>
+
+   <div class="contenedor-catalogo">
+    
+  <div class="contenedor-230">
+
+<div class="filter-card">
+  <h2>Filtros Catalogo</h2>
+
+  <!-- Tipo de planta -->
+  <div class="category">
+    <p class="titlefilt">Tipo de planta</p>
+    <!-- Verdura -->
+    <div class="checkbox-option">
+      <div class="checkbox-wrapper-12">
+        <div class="cbx">
+          <input type="checkbox" id="verdura">
+          <label for="verdura"></label>
+          <svg fill="none" viewBox="0 0 15 14" height="14" width="15">
+            <path d="M2 8.36364L6.23077 12L13 2"></path>
+          </svg>
+        </div>
+        <svg><defs><filter id="goo-12"><feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/><feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7" result="goo-12"/><feBlend in="SourceGraphic" in2="goo-12"/></filter></defs></svg>
+      </div>
+      <span class="checkbox-label">Verdura</span>
+    </div>
+
+    <!-- Fruta -->
+    <div class="checkbox-option">
+      <div class="checkbox-wrapper-12">
+        <div class="cbx">
+          <input type="checkbox" id="fruta">
+          <label for="fruta"></label>
+          <svg fill="none" viewBox="0 0 15 14" height="14" width="15">
+            <path d="M2 8.36364L6.23077 12L13 2"></path>
+          </svg>
+        </div>
+        <svg><defs><filter id="goo-12"><feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/><feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7" result="goo-12"/><feBlend in="SourceGraphic" in2="goo-12"/></filter></defs></svg>
+      </div>
+      <span class="checkbox-label">Fruta</span>
+    </div>
+  </div>
+
+  <!-- Temporada -->
+  <div class="category">
+    <p class="titlefilt">Temporada</p>
+    <!-- Primavera -->
+    <div class="checkbox-option">
+      <div class="checkbox-wrapper-12">
+        <div class="cbx">
+          <input type="checkbox" id="primavera">
+          <label for="primavera"></label>
+          <svg fill="none" viewBox="0 0 15 14" height="14" width="15">
+            <path d="M2 8.36364L6.23077 12L13 2"></path>
+          </svg>
+        </div>
+        <svg><defs><filter id="goo-12"><feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/><feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7" result="goo-12"/><feBlend in="SourceGraphic" in2="goo-12"/></filter></defs></svg>
+      </div>
+      <span class="checkbox-label">Primavera</span>
+    </div>
+
+    <!-- Verano -->
+    <div class="checkbox-option">
+      <div class="checkbox-wrapper-12">
+        <div class="cbx">
+          <input type="checkbox" id="verano">
+          <label for="verano"></label>
+          <svg fill="none" viewBox="0 0 15 14" height="14" width="15">
+            <path d="M2 8.36364L6.23077 12L13 2"></path>
+          </svg>
+        </div>
+        <svg><defs><filter id="goo-12"><feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/><feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7" result="goo-12"/><feBlend in="SourceGraphic" in2="goo-12"/></filter></defs></svg>
+      </div>
+      <span class="checkbox-label">Verano</span>
+    </div>
+
+    <!-- Otoño -->
+    <div class="checkbox-option">
+      <div class="checkbox-wrapper-12">
+        <div class="cbx">
+          <input type="checkbox" id="otono">
+          <label for="otono"></label>
+          <svg fill="none" viewBox="0 0 15 14" height="14" width="15">
+            <path d="M2 8.36364L6.23077 12L13 2"></path>
+          </svg>
+        </div>
+        <svg><defs><filter id="goo-12"><feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/><feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7" result="goo-12"/><feBlend in="SourceGraphic" in2="goo-12"/></filter></defs></svg>
+      </div>
+      <span class="checkbox-label">Otoño</span>
+    </div>
+
+    <!-- Invierno -->
+    <div class="checkbox-option">
+      <div class="checkbox-wrapper-12">
+        <div class="cbx">
+          <input type="checkbox" id="invierno">
+          <label for="invierno"></label>
+          <svg fill="none" viewBox="0 0 15 14" height="14" width="15">
+            <path d="M2 8.36364L6.23077 12L13 2"></path>
+          </svg>
+        </div>
+        <svg><defs><filter id="goo-12"><feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/><feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7" result="goo-12"/><feBlend in="SourceGraphic" in2="goo-12"/></filter></defs></svg>
+      </div>
+      <span class="checkbox-label">Invierno</span>
+    </div>
+  </div>
+
+  <!-- Clima -->
+  <div class="category">
+    <p class="titlefilt">Clima</p>
+    <!-- Templado -->
+    <div class="checkbox-option">
+      <div class="checkbox-wrapper-12">
+        <div class="cbx">
+          <input type="checkbox" id="templado">
+          <label for="templado"></label>
+          <svg fill="none" viewBox="0 0 15 14" height="14" width="15">
+            <path d="M2 8.36364L6.23077 12L13 2"></path>
+          </svg>
+        </div>
+        <svg><defs><filter id="goo-12"><feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/><feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7" result="goo-12"/><feBlend in="SourceGraphic" in2="goo-12"/></filter></defs></svg>
+      </div>
+      <span class="checkbox-label">Templado</span>
+    </div>
+
+    <!-- Cálido -->
+    <div class="checkbox-option">
+      <div class="checkbox-wrapper-12">
+        <div class="cbx">
+          <input type="checkbox" id="calido">
+          <label for="calido"></label>
+          <svg fill="none" viewBox="0 0 15 14" height="14" width="15">
+            <path d="M2 8.36364L6.23077 12L13 2"></path>
+          </svg>
+        </div>
+        <svg><defs><filter id="goo-12"><feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/><feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7" result="goo-12"/><feBlend in="SourceGraphic" in2="goo-12"/></filter></defs></svg>
+      </div>
+      <span class="checkbox-label">Cálido</span>
+    </div>
+
+    <!-- Frío -->
+    <div class="checkbox-option">
+      <div class="checkbox-wrapper-12">
+        <div class="cbx">
+          <input type="checkbox" id="frio">
+          <label for="frio"></label>
+          <svg fill="none" viewBox="0 0 15 14" height="14" width="15">
+            <path d="M2 8.36364L6.23077 12L13 2"></path>
+          </svg>
+        </div>
+        <svg><defs><filter id="goo-12"><feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/><feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7" result="goo-12"/><feBlend in="SourceGraphic" in2="goo-12"/></filter></defs></svg>
+      </div>
+      <span class="checkbox-label">Frío</span>
+    </div>
+
+    <!-- Semidesértico -->
+    <div class="checkbox-option">
+      <div class="checkbox-wrapper-12">
+        <div class="cbx">
+          <input type="checkbox" id="semidesertico">
+          <label for="semidesertico"></label>
+          <svg fill="none" viewBox="0 0 15 14" height="14" width="15">
+            <path d="M2 8.36364L6.23077 12L13 2"></path>
+          </svg>
+        </div>
+        <svg><defs><filter id="goo-12"><feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/><feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7" result="goo-12"/><feBlend in="SourceGraphic" in2="goo-12"/></filter></defs></svg>
+      </div>
+      <span class="checkbox-label">Semidesértico</span>
+    </div>
+  </div>
+
+  <!-- Espacio disponible -->
+  <div class="category">
+    <p class="titlefilt">Espacio disponible</p>
+    <div class="checkbox-option">
+      <div class="checkbox-wrapper-12">
+        <div class="cbx">
+          <input type="checkbox" id="maceta">
+          <label for="maceta"></label>
+          <svg fill="none" viewBox="0 0 15 14" height="14" width="15">
+            <path d="M2 8.36364L6.23077 12L13 2"></path>
+          </svg>
+        </div>
+        <svg><defs><filter id="goo-12"><feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/><feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7" result="goo-12"/><feBlend in="SourceGraphic" in2="goo-12"/></filter></defs></svg>
+      </div>
+      <span class="checkbox-label">Maceta pequeña</span>
+    </div>
+
+    <div class="checkbox-option">
+      <div class="checkbox-wrapper-12">
+        <div class="cbx">
+          <input type="checkbox" id="huerto">
+          <label for="huerto"></label>
+          <svg fill="none" viewBox="0 0 15 14" height="14" width="15">
+            <path d="M2 8.36364L6.23077 12L13 2"></path>
+          </svg>
+        </div>
+        <svg><defs><filter id="goo-12"><feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/><feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7" result="goo-12"/><feBlend in="SourceGraphic" in2="goo-12"/></filter></defs></svg>
+      </div>
+      <span class="checkbox-label">Huerto urbano</span>
+    </div>
+
+    <div class="checkbox-option">
+      <div class="checkbox-wrapper-12">
+        <div class="cbx">
+          <input type="checkbox" id="jardin">
+          <label for="jardin"></label>
+          <svg fill="none" viewBox="0 0 15 14" height="14" width="15">
+            <path d="M2 8.36364L6.23077 12L13 2"></path>
+          </svg>
+        </div>
+        <svg><defs><filter id="goo-12"><feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/><feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7" result="goo-12"/><feBlend in="SourceGraphic" in2="goo-12"/></filter></defs></svg>
+      </div>
+      <span class="checkbox-label">Jardín grande</span>
+    </div>
+  </div>
+
+  <!-- Nivel de experiencia -->
+  <div class="category">
+    <p class="titlefilt">Nivel de experiencia</p>
+    <div class="checkbox-option">
+      <div class="checkbox-wrapper-12">
+        <div class="cbx">
+          <input type="checkbox" id="principiante">
+          <label for="principiante"></label>
+          <svg fill="none" viewBox="0 0 15 14" height="14" width="15">
+            <path d="M2 8.36364L6.23077 12L13 2"></path>
+          </svg>
+        </div>
+        <svg><defs><filter id="goo-12"><feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/><feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7" result="goo-12"/><feBlend in="SourceGraphic" in2="goo-12"/></filter></defs></svg>
+      </div>
+      <span class="checkbox-label">Principiante</span>
+    </div>
+
+    <div class="checkbox-option">
+      <div class="checkbox-wrapper-12">
+        <div class="cbx">
+          <input type="checkbox" id="intermedio">
+          <label for="intermedio"></label>
+          <svg fill="none" viewBox="0 0 15 14" height="14" width="15">
+            <path d="M2 8.36364L6.23077 12L13 2"></path>
+          </svg>
+        </div>
+        <svg><defs><filter id="goo-12"><feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/><feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7" result="goo-12"/><feBlend in="SourceGraphic" in2="goo-12"/></filter></defs></svg>
+      </div>
+      <span class="checkbox-label">Intermedio</span>
+    </div>
+
+  <button class="apply-btn">Aplicar filtros</button>
+</div>
+  </div>
+
+  </div>
+
+    <div class="contenedor-800">
+
+
+<div class="container">
+  <div class="card">
+    <div class="favorite-btn"><i class="far fa-heart"></i></div>
+    <div class="imgBx"><img src="../static/Resourses/FV Webp/Ajo.webp" alt="Ajo"></div>
+    <div class="contentBx">
+      <h2>Ajo</h2>
+      <div class="size"><h3>Tipo</h3><h3 class="tipos">Verdura</h3></div>
+      <div class="color">
+       </span><span class="temporaV fas fa-sun"></span>
+      </span><span class="temporaI fas fa-snowflake"></span>
+      </div>
+      <a href="#">Saber más</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <div class="favorite-btn"><i class="far fa-heart"></i></div>
+    <div class="imgBx"><img src="../static/Resourses/FV Webp/Calabaza V.webp" alt="Calabaza Verde"></div>
+    <div class="contentBx">
+      <h2>Calabaza Verde</h2>
+      <div class="size"><h3>Tipo</h3><h3 class="tipos">Verdura</h3></div>
+      <div class="color">
+        <span class="temporaP fas fa-seedling"></span><span class="temporaV fas fa-sun"></span>
+      </div>
+      <a href="#">Saber más</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <div class="favorite-btn"><i class="far fa-heart"></i></div>
+    <div class="imgBx"><img src="../static/Resourses/FV Webp/Moras.webp" alt="Calabaza Verde"></div>
+    <div class="contentBx">
+      <h2>Mora</h2>
+      <div class="size"><h3>Tipo</h3><h3 class="tipos">Verdura</h3></div>
+      <div class="color">
+        <span class="temporaO fas fa-leaf"></span><span class="temporaI fas fa-snowflake"></span>
+      </div>
+      <a href="#">Saber más</a>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="card">
+    <div class="favorite-btn"><i class="far fa-heart"></i></div>
+    <div class="imgBx"><img src="../static/Resourses/FV Webp/calabaza.png" alt="Calabaza Naranja"></div>
+    <div class="contentBx">
+      <h2>Calabaza Naranja</h2>
+      <div class="size"><h3>Tipo</h3><h3 class="tipos">Verdura</h3></div>
+      <div class="color">
+        <span class="temporaP fas fa-seedling"></span><span class="temporaV fas fa-sun"></span>
+      </div>
+      <a href="#">Saber más</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <div class="favorite-btn"><i class="far fa-heart"></i></div>
+    <div class="imgBx"><img src="../static/Resourses/FV Webp/Cebolla Blanca.webp" alt="Cebolla Blanca"></div>
+    <div class="contentBx">
+      <h2>Cebolla Blanca</h2>
+      <div class="size"><h3>Tipo</h3><h3 class="tipos">Verdura</h3></div>
+      <div class="color">
+        <span class="temporaP fas fa-seedling"></span>
+        <span class="temporaO fas fa-leaf"></span><span class="temporaI fas fa-snowflake"></span>
+      </div>
+      <a href="#">Saber más</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <div class="favorite-btn"><i class="far fa-heart"></i></div>
+    <div class="imgBx"><img src="../static/Resourses/FV Webp/Cebolla Morada.webp" alt="Cebolla Morada"></div>
+    <div class="contentBx">
+      <h2>Cebolla Morada</h2>
+      <div class="size"><h3>Tipo</h3><h3 class="tipos">Verdura</h3></div>
+      <div class="color">
+        <span class="temporaP fas fa-seedling">
+        <span class="temporaO fas fa-leaf"></span><span class="temporaI fas fa-snowflake"></span>
+      </div>
+      <a href="#">Saber más</a>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container">
+  <div class="card">
+    <div class="favorite-btn"><i class="far fa-heart"></i></div>
+    <div class="imgBx"><img src="../static/Resourses/FV Webp/Cebolla.webp" alt="Cebolla Cambray"></div>
+    <div class="contentBx">
+      <h2>Cebolla Cambray</h2>
+      <div class="size"><h3>Tipo</h3><h3 class="tipos">Verdura</h3></div>
+      <div class="color">
+        <span class="temporaP fas fa-seedling"></span>
+        <span class="temporaO fas fa-leaf"></span><span class="temporaI fas fa-snowflake"></span>
+      </div>
+      <a href="#">Saber más</a>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="card">
+    <div class="favorite-btn"><i class="far fa-heart"></i></div>
+    <div class="imgBx"><img src="../static/Resourses/FV Webp/Chile de Arbol.webp" alt="Chile de Arbol"></div>
+    <div class="contentBx">
+      <h2>Chile de Árbol</h2>
+      <div class="size"><h3>Tipo</h3><h3 class="tipos">Verdura</h3></div>
+      <div class="color">
+        <span class="temporaP fas fa-seedling"></span><span class="temporaV fas fa-sun"></span>
+      </div>
+      <a href="#">Saber más</a>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="card">
+    <div class="favorite-btn"><i class="far fa-heart"></i></div>
+    <div class="imgBx">
+      <img src="../static/Resourses/FV Webp/cilantro.png" alt="Cilantro">
+    </div>
+    <div class="contentBx">
+      <h2>Cilantro</h2>
+      <div class="size"><h3>Tipo</h3><h3 class="tipos">Fruta</h3></div>
+      <div class="color">
+        <span class="temporaP fas fa-seedling"></span>
+  
+        <span class="temporaO fas fa-leaf"></span>
+        <span class="temporaI fas fa-snowflake"></span>
+      </div>
+      <a href="#">Saber más</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <div class="favorite-btn"><i class="far fa-heart"></i></div>
+    <div class="imgBx">
+      <img src="../static/Resourses/FV Webp/Fresa.webp" alt="Fresa">
+    </div>
+    <div class="contentBx">
+      <h2>Fresa</h2>
+      <div class="size"><h3>Tipo</h3><h3 class="tipos">Fruta</h3></div>
+      <div class="color">
+
+        <span class="temporaO fas fa-leaf"></span>
+        <span class="temporaI fas fa-snowflake"></span>
+      </div>
+      <a href="#">Saber más</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <div class="favorite-btn"><i class="far fa-heart"></i></div>
+    <div class="imgBx">
+      <img src="../static/Resourses/FV Webp/Durazno.webp" alt="Granada">
+    </div>
+    <div class="contentBx">
+      <h2>Durazno</h2>
+      <div class="size"><h3>Tipo</h3><h3 class="tipos">Fruta</h3></div>
+      <div class="color">
+        <span class="temporaP fas fa-seedling"></span>
+        <span class="temporaV fas fa-sun"></span>
+      </div>
+      <a href="#">Saber más</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <div class="favorite-btn"><i class="far fa-heart"></i></div>
+    <div class="imgBx">
+      <img src="../static/Resourses/FV Webp/Granada.webp" alt="Granada">
+    </div>
+    <div class="contentBx">
+      <h2>Granada</h2>
+      <div class="size"><h3>Tipo</h3><h3 class="tipos">Fruta</h3></div>
+      <div class="color">
+        <span class="temporaP fas fa-seedling"></span>
+        <span class="temporaV fas fa-sun"></span>
+      </div>
+      <a href="#">Saber más</a>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container">
+  <div class="card">
+    <div class="favorite-btn"><i class="far fa-heart"></i></div>
+    <div class="imgBx">
+      <img src="../static/Resourses/FV Webp/Habanero.webp" alt="Chile Habanero">
+    </div>
+    <div class="contentBx">
+      <h2>Chile Habanero</h2>
+      <div class="size"><h3>Tipo</h3><h3 class="tipos">Verdura</h3></div>
+      <div class="color">
+        <span class="temporaP fas fa-seedling"></span>
+        <span class="temporaV fas fa-sun"></span>
+      </div>
+      <a href="#">Saber más</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <div class="favorite-btn"><i class="far fa-heart"></i></div>
+    <div class="imgBx">
+      <img src="../static/Resourses/FV Webp/jicama2.png" alt="Jicama">
+    </div>
+    <div class="contentBx">
+      <h2>Jícama</h2>
+      <div class="size"><h3>Tipo</h3><h3 class="tipos">Verdura</h3></div>
+      <div class="color">
+        <span class="temporaP fas fa-seedling"></span>
+        <span class="temporaV fas fa-sun"></span>
+      </div>
+      <a href="#">Saber más</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <div class="favorite-btn"><i class="far fa-heart"></i></div>
+    <div class="imgBx">
+      <img src="../static/Resourses/FV Webp/Jitomate.webp" alt="Jitomate">
+    </div>
+    <div class="contentBx">
+      <h2>Jitomate</h2>
+      <div class="size"><h3>Tipo</h3><h3 class="tipos">Fruta</h3></div>
+      <div class="color">
+        <span class="temporaP fas fa-seedling"></span>
+        <span class="temporaV fas fa-sun"></span>
+      </div>
+      <a href="#">Saber más</a>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="card">
+    <div class="favorite-btn"><i class="far fa-heart"></i></div>
+    <div class="imgBx">
+      <img src="../static/Resourses/FV Webp/Lechuga Orejona.webp" alt="Lechuga Orejona">
+    </div>
+    <div class="contentBx">
+      <h2>Lechuga Orejona</h2>
+      <div class="size"><h3>Tipo</h3><h3 class="tipos">Verdura</h3></div>
+      <div class="color">
+        <span class="temporaP fas fa-seedling"></span>
+        <span class="temporaO fas fa-leaf"></span>
+        <span class="temporaI fas fa-snowflake"></span>
+      </div>
+      <a href="#">Saber más</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <div class="favorite-btn"><i class="far fa-heart"></i></div>
+    <div class="imgBx">
+      <img src="../static/Resourses/FV Webp/lechuga2.png" alt="Lechuga">
+    </div>
+    <div class="contentBx">
+      <h2>Lechuga</h2>
+      <div class="size"><h3>Tipo</h3><h3 class="tipos">Verdura</h3></div>
+      <div class="color">
+        <span class="temporaP fas fa-seedling"></span>
+        <span class="temporaO fas fa-leaf"></span>
+        <span class="temporaI fas fa-snowflake"></span>
+      </div>
+      <a href="#">Saber más</a>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="card">
+    <div class="favorite-btn"><i class="far fa-heart"></i></div>
+    <div class="imgBx">
+      <img src="../static/Resourses/FV Webp/Lima.webp" alt="Lima">
+    </div>
+    <div class="contentBx">
+      <h2>Lima</h2>
+      <div class="size"><h3>Tipo</h3><h3 class="tipos">Fruta</h3></div>
+      <div class="color">
+        <span class="temporaP fas fa-seedling"></span>
+        <span class="temporaV fas fa-sun"></span>
+      </div>
+      <a href="#">Saber más</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <div class="favorite-btn"><i class="far fa-heart"></i></div>
+    <div class="imgBx">
+      <img src="../static/Resourses/FV Webp/Limon.webp" alt="Limon">
+    </div>
+    <div class="contentBx">
+      <h2>Limón</h2>
+      <div class="size"><h3>Tipo</h3><h3 class="tipos">Fruta</h3></div>
+      <div class="color">
+        <span class="temporaP fas fa-seedling"></span>
+        <span class="temporaV fas fa-sun"></span>
+      </div>
+      <a href="#">Saber más</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <div class="favorite-btn"><i class="far fa-heart"></i></div>
+    <div class="imgBx">
+      <img src="../static/Resourses/FV Webp/Maiz.webp" alt="Maiz">
+    </div>
+    <div class="contentBx">
+      <h2>Maíz</h2>
+      <div class="size"><h3>Tipo</h3><h3 class="tipos">Verdura</h3></div>
+      <div class="color">
+        <span class="temporaP fas fa-seedling"></span>
+        <span class="temporaV fas fa-sun"></span>
+      </div>
+      <a href="#">Saber más</a>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="card">
+    <div class="favorite-btn"><i class="far fa-heart"></i></div>
+    <div class="imgBx">
+      <img src="../static/Resourses/FV Webp/mandarina.png" alt="Mandarina">
+    </div>
+    <div class="contentBx">
+      <h2>Mandarina</h2>
+      <div class="size"><h3>Tipo</h3><h3 class="tipos">Fruta</h3></div>
+      <div class="color">
+        <span class="temporaP fas fa-seedling"></span>
+        <span class="temporaV fas fa-sun"></span>
+      </div>
+      <a href="#">Saber más</a>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container">
+  <div class="card">
+    <div class="favorite-btn"><i class="far fa-heart"></i></div>
+    <div class="imgBx">
+      <img src="../static/Resourses/FV Webp/naranja.png" alt="Naranja">
+    </div>
+    <div class="contentBx">
+      <h2>Naranja</h2>
+      <div class="size"><h3>Tipo</h3><h3 class="tipos">Fruta</h3></div>
+      <div class="color">
+        <span class="temporaP fas fa-seedling"></span>
+        <span class="temporaV fas fa-sun"></span>
+      </div>
+      <a href="#">Saber más</a>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="card">
+    <div class="favorite-btn"><i class="far fa-heart"></i></div>
+    <div class="imgBx">
+      <img src="../static/Resourses/FV Webp/Mango.webp" alt="Mango">
+    </div>
+    <div class="contentBx">
+      <h2>Mango</h2>
+      <div class="size"><h3>Tipo</h3><h3 class="tipos">Fruta</h3></div>
+      <div class="color">
+        <span class="temporaP fas fa-seedling"></span>
+        <span class="temporaV fas fa-sun"></span>
+      </div>
+      <a href="#">Saber más</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <div class="favorite-btn"><i class="far fa-heart"></i></div>
+    <div class="imgBx">
+      <img src="../static/Resourses/FV Webp/Melon.webp" alt="Melon">
+    </div>
+    <div class="contentBx">
+      <h2>Melón</h2>
+      <div class="size"><h3>Tipo</h3><h3 class="tipos">Fruta</h3></div>
+      <div class="color">
+        <span class="temporaP fas fa-seedling"></span>
+        <span class="temporaV fas fa-sun"></span>
+      </div>
+      <a href="#">Saber más</a>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="card">
+    <div class="favorite-btn"><i class="far fa-heart"></i></div>
+    <div class="imgBx">
+      <img src="../static/Resourses/FV Webp/Papaya.webp" alt="Papaya">
+    </div>
+    <div class="contentBx">
+      <h2>Papaya</h2>
+      <div class="size"><h3>Tipo</h3><h3 class="tipos">Fruta</h3></div>
+      <div class="color">
+        <span class="temporaP fas fa-seedling"></span>
+        <span class="temporaV fas fa-sun"></span>
+      </div>
+      <a href="#">Saber más</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <div class="favorite-btn"><i class="far fa-heart"></i></div>
+    <div class="imgBx">
+      <img src="../static/Resourses/FV Webp/Pepino.webp" alt="Pepino">
+    </div>
+    <div class="contentBx">
+      <h2>Pepino</h2>
+      <div class="size"><h3>Tipo</h3><h3 class="tipos">Verdura</h3></div>
+      <div class="color">
+        <span class="temporaP fas fa-seedling"></span>
+        <span class="temporaV fas fa-sun"></span>
+      </div>
+      <a href="#">Saber más</a>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="card">
+    <div class="favorite-btn"><i class="far fa-heart"></i></div>
+    <div class="imgBx">
+      <img src="../static/Resourses/FV Webp/Pera.webp" alt="Pera">
+    </div>
+    <div class="contentBx">
+      <h2>Pera</h2>
+      <div class="size"><h3>Tipo</h3><h3 class="tipos">Fruta</h3></div>
+      <div class="color">
+        <span class="temporaP fas fa-seedling"></span>
+        <span class="temporaI fas fa-snowflake"></span>
+      </div>
+      <a href="#">Saber más</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <div class="favorite-btn"><i class="far fa-heart"></i></div>
+    <div class="imgBx">
+      <img src="../static/Resourses/FV Webp/Perejil.webp" alt="Perejil">
+    </div>
+    <div class="contentBx">
+      <h2>Perejil</h2>
+      <div class="size"><h3>Tipo</h3><h3 class="tipos">Verdura</h3></div>
+      <div class="color">
+        <span class="temporaP fas fa-seedling"></span>
+        <span class="temporaO fas fa-leaf"></span>
+        <span class="temporaI fas fa-snowflake"></span>
+      </div>
+      <a href="#">Saber más</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <div class="favorite-btn"><i class="far fa-heart"></i></div>
+    <div class="imgBx">
+      <img src="../static/Resourses/FV Webp/Piña.webp" alt="Pina">
+    </div>
+    <div class="contentBx">
+      <h2>Piña</h2>
+      <div class="size"><h3>Tipo</h3><h3 class="tipos">Fruta</h3></div>
+      <div class="color">
+        <span class="temporaP fas fa-seedling"></span>
+        <span class="temporaV fas fa-sun"></span>
+      </div>
+      <a href="#">Saber más</a>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="card">
+    <div class="favorite-btn"><i class="far fa-heart"></i></div>
+    <div class="imgBx">
+      <img src="../static/Resourses/FV Webp/Platano.webp" alt="Platano">
+    </div>
+    <div class="contentBx">
+      <h2>Plátano</h2>
+      <div class="size"><h3>Tipo</h3><h3 class="tipos">Fruta</h3></div>
+      <div class="color">
+        <span class="temporaP fas fa-seedling"></span>
+        <span class="temporaV fas fa-sun"></span>
+      </div>
+      <a href="#">Saber más</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <div class="favorite-btn"><i class="far fa-heart"></i></div>
+
+    <div class="imgBx">
+      <img src="../static/Resourses/FV Webp/Rabano.webp" alt="Rabano">
+    </div>
+
+    <div class="contentBx">
+      <h2>Rábano</h2>
+
+      <div class="size"><h3>Tipo</h3><h3 class="tipos">Verdura</h3></div>
+
+      <div class="color">
+        <span class="temporaP fas fa-seedling"></span>
+        <span class="temporaO fas fa-leaf"></span>
+        <span class="temporaI fas fa-snowflake"></span>
+      </div>
+
+      <a href="#">Saber más</a>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="card">
+    <div class="favorite-btn"><i class="far fa-heart"></i></div>
+
+    <div class="imgBx">
+      <img src="../static/Resourses/FV Webp/Sandia.webp" alt="Sandia">
+    </div>
+
+    <div class="contentBx">
+      <h2>Sandía</h2>
+
+      <div class="size"><h3>Tipo</h3><h3 class="tipos">Fruta</h3></div>
+
+      <div class="color">
+        <span class="temporaP fas fa-seedling"></span>
+        <span class="temporaV fas fa-sun"></span>
+      </div>
+
+      <a href="#">Saber más</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <div class="favorite-btn"><i class="far fa-heart"></i></div>
+
+    <div class="imgBx">
+      <img src="../static/Resourses/FV Webp/Tomate.webp" alt="Tomate">
+    </div>
+
+    <div class="contentBx">
+      <h2>Tomate</h2>
+
+      <div class="size"><h3>Tipo</h3><h3 class="tipos">Verdura</h3></div>
+
+      <div class="color">
+        <span class="temporaP fas fa-seedling"></span>
+        <span class="temporaV fas fa-sun"></span>
+      </div>
+
+      <a href="#">Saber más</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <div class="favorite-btn"><i class="far fa-heart"></i></div>
+
+    <div class="imgBx">
+      <img src="../static/Resourses/FV Webp/Uva.webp" alt="Uva">
+    </div>
+
+    <div class="contentBx">
+      <h2>Uva</h2>
+
+      <div class="size"><h3>Tipo</h3><h3 class="tipos">Fruta</h3></div>
+
+      <div class="color">
+        <span class="temporaP fas fa-seedling"></span>
+        <span class="temporaI fas fa-snowflake"></span>
+      </div>
+
+      <a href="#">Saber más</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <div class="favorite-btn"><i class="far fa-heart"></i></div>
+
+    <div class="imgBx">
+      <img src="../static/Resourses/FV Webp/Zanahoria.webp" alt="Zanahoria">
+    </div>
+
+    <div class="contentBx">
+      <h2>Zanahoria</h2>
+
+      <div class="size"><h3>Tipo</h3><h3 class="tipos">Verdura</h3></div>
+
+      <div class="color">
+        <span class="temporaP fas fa-seedling"></span>
+        <span class="temporaO fas fa-leaf"></span>
+        <span class="temporaI fas fa-snowflake"></span>
+      </div>
+
+      <a href="#">Saber más</a>
+    </div>
+  </div>
+</div>
+
+
+
+
+  </div>
+
+</div>
+
+
+  <!-- SVG filter -->
+  <svg width="0" height="0" style="position: absolute;">
+    <filter id="goo" x="-50%" y="-50%" width="200%" height="200%">
+      <feComponentTransfer>
+        <feFuncA type="discrete" tableValues="0 1"></feFuncA>
+      </feComponentTransfer>
+      <feGaussianBlur stdDeviation="5"></feGaussianBlur>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="-5 11"></feFuncA>
+      </feComponentTransfer>
+    </filter>
+  </svg>
+
+  <!--JavaScript para alternar el corazón -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const favoriteBtn = document.querySelector('.favorite-btn i');
+      
+      favoriteBtn.addEventListener('click', function() {
+        if (favoriteBtn.classList.contains('far')) {
+          favoriteBtn.classList.remove('far');
+          favoriteBtn.classList.add('fas');
+        } else {
+          favoriteBtn.classList.remove('fas');
+          favoriteBtn.classList.add('far');
+        }
+      });
+    });
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+      <script>
+    // Aplica el movimiento del fondo en cada botón
+    document.querySelectorAll("button").forEach(btn => {
+      btn.addEventListener("pointermove", (e) => {
+        const rect = btn.getBoundingClientRect();
+        btn.style.setProperty('--x', ((e.clientX - rect.x) / rect.width) * 100);
+        btn.style.setProperty('--y', ((e.clientY - rect.y) / rect.height) * 100);
+      });
+    });
+  </script>
+<script>
+  window.addEventListener('load', () => {
+    const header = document.querySelector('header');
+    header.classList.add('visible');
+  });
+</script>
+
+
+<script>
+  window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    const logoImg = document.getElementById('logo-img');
+
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled');
+      logoImg.src = '../static/Resourses/Logos/QH uerto C.png'; // nuevo logo
+    } else {
+      header.classList.remove('scrolled');
+      logoImg.src = '../static/Resourses/Logos/QH uerto.png'; // logo original
+    }
+  });
+</script>
+
+
+<script>
+  window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    const profileScroll = document.getElementById('profile-on-scroll');
+    const profileTopMenu = document.querySelector('.divusuario nav');
+
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled');
+      profileScroll.style.display = 'flex'; // mostrar perfil al lado de "Nosotros"
+      profileTopMenu.style.display = 'none'; // ocultar el top menu original
+    } else {
+      header.classList.remove('scrolled');
+      profileScroll.style.display = 'none'; // ocultar perfil abajo
+      profileTopMenu.style.display = 'inline-flex'; // mostrar top menu
+    }
+  });
+</script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+
+    <script src="../static/JS/main.js"></script>
+  </body>
+</html>

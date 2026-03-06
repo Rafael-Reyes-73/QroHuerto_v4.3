@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"rel="stylesheet"/>
+
+    <link rel="stylesheet" href="../static/CSS/styles.css" />
+    <link rel="stylesheet" href="../static/CSS/slider.css" />
+    <link rel="stylesheet" href="../static/CSS/header.css" />
+    <link rel="stylesheet" href="../static/CSS/botones.css" />
+    <link rel="stylesheet" href="../static/CSS/morita.css" />
+    <title>QroHuerto - Home</title>
+    <link rel="icon" href="../static/Resourses/Logos/QH.png" type="image/x-icon" />
+  </head>
+
+  <style>
+    .benefits {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #e0ffe8, #ffffff);
+      margin: 0;
+      padding: 2rem;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+      width: 100%;
+    }
+
+    .benefit-item {
+        height: 100px; /* o el tamaño que quieras */
+  width: 100%; /* asegura que llene el ancho de la columna */
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .benefit-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+    }
+
+    .benefit-item i {
+      font-size: 1.3rem;
+      color: #3CB371;
+      margin-bottom: 1rem;
+    }
+
+    .benefit-item p {
+      font-size: 1.1rem;
+      color: #333;
+      font-weight: 500;
+    }
+
+/* Contenedor del menú Liquid Glass */
+.perfil-menu {
+    position: absolute;
+    top: 45px;
+    right: 0px;
+
+    /* Liquid Glass */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    border-radius: 15px;
+    padding: 0px 0px;
+    width: 180px;
+
+    /* Borde de vidrio */
+    border: 1px solid rgba(255, 255, 255, 0.35);
+
+    /* Brillo interno sutil */
+    box-shadow:
+        inset 0 0 12px rgba(255, 255, 255, 0.4),
+        0 4px 25px rgba(0, 0, 0, 0.2);
+
+    display: none;
+    z-index: 9999;
+}
+
+/* Opción del menú */
+.perfil-menu a {
+    display: block;
+    padding: 10px 30px;
+    margin-bottom: 5px;
+
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.10);
+
+    transition: 0.25s ease;
+}
+
+/* Hover efecto brillante */
+.perfil-menu a:hover {
+    background: rgba(255, 255, 255, 0.30);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+    transform: scale(1.03);
+}
+
+
+/* Animación */
+@keyframes fadeMenu {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+  </style>
+<body style="
+    background-image: url('../static/Resourses/Backgrounds/BackT0.png');
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-attachment: scroll;
+">
+
+
+{% include 'components/header.html' %}
+
+
+
+
+<div class="slider" id="slider">
+  <div class="slides" id="slides">
+    <div class="slide-wrapper" id="wrapper">
+      <!-- Clone last slide (for infinite effect) -->
+      <div class="slide">
+        <div class="parent">
+          <div class="div2"><h1 class="green">Oye!!! QroHuerto</h1><p>tiene</p><br><h2 class="yellow">Nueva Imagen pensando en ti</h2></div>
+          <div class="div3"><img src="../static/Resourses/Img/HermosaRosa.png" alt="Comunidad" /></div>
+          <div class="div5"><p>¡Bienvenido al nuevo QroHuerto! Explora nuestro nuevo diseño, más verde que nunca.</p>
+            <div class="buttons">
+                          <main id="app" class="bluee">
+    <nav class="blueepurple">
+      <button type="button" class="active">Home</button>
+      <button type="button" class="active"><i class="fas fa-play"></i></button>
+    </nav>
+  </main>
+            </div>
+            <span class="tituloblue">Semillas Favoritas</span>
+          </div>
+          <div class="div4">
+
+<div class="card-gold">  
+  <img src="Resourses/Img/M1 5.png" alt="icono" class="top-right-icon">
+  <div class="title">Vegetal</div>
+  <div class="subtitle">Cilantro</div>
+  <img src="../static/Resourses/Img/cilantro.png" alt="Cilantro" class="bottom-image">
+  <button class="ver-mas-btn">Ver más</button>
+</div>
+
+<div class="card-gold">  
+  <img src="../static/Resourses/Img/M1 5.png" alt="icono" class="top-right-icon">
+  <div class="title">Vegetal</div>
+  <div class="subtitle">Cilantro</div>
+  <img src="Resourses/Img/cilantro.png" alt="Cilantro" class="bottom-image">
+  <button class="ver-mas-btn">Ver más</button>
+</div>
+
+<div class="card-gold">  
+  <img src="../static/Resourses/Img/M1 5.png" alt="icono" class="top-right-icon">
+  <div class="title">Vegetal</div>
+  <div class="subtitle">Cilantro</div>
+  <img src="../static/Resourses/Img/cilantro.png" alt="Cilantro" class="bottom-image">
+  <button class="ver-mas-btn">Ver más</button>
+</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 1 -->
+      <div class="slide">
+        <div class="parent">
+          <div class="div2"><h1 class="green">Oye!!! QroHuerto</h1><p>tiene</p><br><h2 class="yellow">Nueva Imagen pensando en ti</h2></div>
+          <div class="div3"><img src="../static/Resourses/Img/HermosaRosa.png" alt="Comunidad" /></div>
+          <div class="div5"><p>¡Bienvenido al nuevo QroHuerto! Explora nuestro nuevo diseño, más verde que nunca.</p>
+            <div class="buttons">
+                          <main id="app" class="bluee">
+    <nav class="blueepurple">
+      <button type="button" class="active">Home</button>
+      <button type="button" class="active"><i class="fas fa-play"></i></button>
+    </nav>
+  </main>
+            </div>
+            <span class="tituloblue">Semillas Favoritas</span>
+          </div>
+          <div class="div4">
+
+<div class="card-gold">  
+  <img src="Resourses/Img/M1 5.png" alt="icono" class="top-right-icon">
+  <div class="title">Vegetal</div>
+  <div class="subtitle">Cilantro</div>
+  <img src="../static/Resourses/Img/cilantro.png" alt="Cilantro" class="bottom-image">
+  <button class="ver-mas-btn">Ver más</button>
+</div>
+
+<div class="card-gold">  
+  <img src="../static/Resourses/Img/M1 5.png" alt="icono" class="top-right-icon">
+  <div class="title">Vegetal</div>
+  <div class="subtitle">Cilantro</div>
+  <img src="Resourses/Img/cilantro.png" alt="Cilantro" class="bottom-image">
+  <button class="ver-mas-btn">Ver más</button>
+</div>
+
+<div class="card-gold">  
+  <img src="../static/Resourses/Img/M1 5.png" alt="icono" class="top-right-icon">
+  <div class="title">Vegetal</div>
+  <div class="subtitle">Cilantro</div>
+  <img src="../static/Resourses/Img/cilantro.png" alt="Cilantro" class="bottom-image">
+  <button class="ver-mas-btn">Ver más</button>
+</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="slide">
+        <div class="parent">
+          <div class="div2"><h1 class="ross">¿Qué puedes sembrar</h1><p>en tu</p><br><h2  class="yellow">Municipio?</h2></div>
+          <div class="div3"><img src="../static/Resourses/Img/HermosaRosa3.png" alt="Comunidad" /></div>
+          <div class="div5"><p>Responde unas preguntas y descubre qué cultivos se adaptan a tu zona.” “Clima, altitud y temporada... ¡tus cultivos ideales están a un clic!”</p>
+            <div class="buttons">
+            <main id="app" class="bluee">
+    <nav class="redd">
+      <button type="button" class="active">Home</button>
+      <button type="button" class="active">QroPlay</button>
+    </nav>
+  </main>
+            </div>
+
+          </div>
+          <div class="div4">
+
+
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Slide 3 -->
+      <div class="slide">
+        <div class="parent">
+          <div class="div2"><h1 class="orange">Festeja el Dia de Muertos</h1><p class="yellow">y celebra</p><br><h2 class="purple">Hallowen con las Calabazas</h2></div>
+          <div class="div3"><img src="../static/Resourses/Img/DiaHoll.png" alt="Comunidad" /></div>
+          <div class="div5"><p>Tus calabazas naranjas, sembradas en julio, ya están listas. Cosecha y disfruta una celebración de Halloween y Día de Muertos totalmente natural y cultivada por ti.</p>
+            <div class="buttons">
+            <main id="app" class="bluee">
+<nav class="blueepurple">
+  <button type="button" class="active">Calabaza</button>
+
+  <a href="{{ url_for('static', filename='docs/Calaverita.pdf') }}" target="_blank">
+    <button type="button" class="active">Calaverita Literaria de QroHuerto</button>
+  </a>
+</nav>
+
+  </main>
+            </div>
+          </div>
+          <div class="div4">
+
+          </div>
+        </div>
+      </div>
+<!-- Slide 4 -->
+            <div class="slide">
+        <div class="parent">
+                   <div class="div2"><h2 class="yellow">QroHuerto V5</h2><p>muy pronto</p><br><h1 class="ross">2026</h1></div>
+  <div class="div3"><img src="../static/Resourses/Img/QHV5.png" alt="Comunidad" /></div>
+          <div class="div5"><p>Un QroHuerto completamente reinventado: rendimiento superior, 
+            interfaz moderna, nuevas herramientas de cultivo inteligente y una experiencia de 
+            usuario, arquitectura de nueva generación gracias a React, FastAPI y PostgreSQL.
+             “Mi Huerto” será más personal, rápido y potente que nunca.</p>
+            <div class="buttons">
+            <main id="app" class="bluee">
+    <nav class="redd">
+      <button type="button" class="active">Ver más</button>
+    </nav>
+  </main>
+            </div>
+          </div>
+          <div class="div4">
+
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 5 -->
+            <div class="slide">
+        <div class="parent">
+                   <div class="div2"><h1 class="green">Únete a QroHuerto</h1><p class="yellow">2025 - 2026</p><br><h2 class="blue">Buscamos nuevos talentos!</h2></div>
+  <div class="div3"><img src="../static/Resourses/Img/Bienvenido.png" alt="Comunidad" /></div>
+          <div class="div5"><p>Necesitamos creativos, programadores, diseñadores, 
+        estrategas digitales y amantes de la tecnología verde.  
+        Si eres de los que siempre quieren aprender más… este es tu lugar.</p>
+            <div class="buttons">
+            <main id="app" class="bluee">
+    <nav class="blueepurple">
+      <button type="button" class="active">Quiero unirme</button>
+    </nav>
+  </main>
+            </div>
+          </div>
+          <div class="div4">
+
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Clone first slide (for infinite effect) -->
+      <div class="slide">
+        <div class="parent">
+          <div class="div2"><h1 class="green">Oye!!! QroHuerto</h1><p>tiene</p><br><h2 class="yellow">Nueva Imagen pensando en ti</h2></div>
+          <div class="div3"><img src="../static/Resourses/Img/HermosaRosa.png" alt="Comunidad" /></div>
+          <div class="div5"><p>¡Bienvenido al nuevo QroHuerto! Explora nuestro nuevo diseño, más verde que nunca.</p>
+            <div class="buttons">
+                          <main id="app" class="bluee">
+    <nav class="blueepurple">
+      <button type="button" class="active">Home</button>
+      <button type="button" class="active"><i class="fas fa-play"></i></button>
+    </nav>
+  </main>
+            </div>
+            <span class="tituloblue">Semillas Favoritas</span>
+          </div>
+          <div class="div4">
+
+<div class="card-gold">  
+  <img src="Resourses/Img/M1 5.png" alt="icono" class="top-right-icon">
+  <div class="title">Vegetal</div>
+  <div class="subtitle">Cilantro</div>
+  <img src="../static/Resourses/Img/cilantro.png" alt="Cilantro" class="bottom-image">
+  <button class="ver-mas-btn">Ver más</button>
+</div>
+
+<div class="card-gold">  
+  <img src="../static/Resourses/Img/M1 5.png" alt="icono" class="top-right-icon">
+  <div class="title">Vegetal</div>
+  <div class="subtitle">Cilantro</div>
+  <img src="Resourses/Img/cilantro.png" alt="Cilantro" class="bottom-image">
+  <button class="ver-mas-btn">Ver más</button>
+</div>
+
+<div class="card-gold">  
+  <img src="../static/Resourses/Img/M1 5.png" alt="icono" class="top-right-icon">
+  <div class="title">Vegetal</div>
+  <div class="subtitle">Cilantro</div>
+  <img src="../static/Resourses/Img/cilantro.png" alt="Cilantro" class="bottom-image">
+  <button class="ver-mas-btn">Ver más</button>
+</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dots-container">
+    <div class="dot active" onclick="goToSlide(1)"></div>
+    <div class="dot" onclick="goToSlide(2)"></div>
+    <div class="dot" onclick="goToSlide(3)"></div>
+    <div class="dot" onclick="goToSlide(4)"></div>
+    <div class="dot" onclick="goToSlide(5)"></div>
+  </div>
+</div>
+
+<section style="height: 200px;"></section>
+
+<section id="moritaSeccion">
+  <span class="moritaEtiqueta">Temporadas de Morita</span>
+  <h2 class="moritaTitulo">Conoce las estaciones con Morita</h2>
+
+  <div class="moritaContenedor">
+    <div class="moritaImgContenedor">
+      <img id="moritaImg1" src="../static/Resourses/Morita/MoritaTemporadas.png" class="mostrar" alt="Estación">
+      <img id="moritaImg2" src="" alt="Estación">
+    </div>
+
+    <div class="moritaTexto">
+      <div class="moritaBotones">
+        <button class="moritaBoton moritaPrimavera" onclick="moritaCambiar('primavera')">
+          <i class="fa-solid fa-seedling"></i>
+        </button>
+        <button class="moritaBoton moritaVerano" onclick="moritaCambiar('verano')">
+          <i class="fa-solid fa-sun"></i>
+        </button>
+        <button class="moritaBoton moritaOtonio" onclick="moritaCambiar('otonio')">
+          <i class="fa-solid fa-leaf"></i>
+        </button>
+        <button class="moritaBoton moritaInvierno" onclick="moritaCambiar('invierno')">
+          <i class="fa-solid fa-snowflake"></i>
+        </button>
+      </div>
+      <p id="moritaTexto"></p>
+    </div>
+
+    <img id="moritaImagen" src="../static/Resourses/Morita/moritarie.png" alt="Morita" style="width:150px; margin-top:15px; opacity:0;">
+  </div>
+
+  <div id="moritaParticulas"></div>
+</section>
+
+<br><br>
+
+  <div class="versiones-header">
+    <span class="tagblue">Historia de QroHuerto</span>
+    <h2>¡NO TE DETENGAS HASTA VER TU HUERTO FLORECER!</h2>
+  </div>
+<section class="benefits">
+
+  <!-- Título y subtítulo centrados y separados -->
+
+
+  <!-- Cards versiones -->
+  <!-- Cards versiones -->
+  <div class="versiones-container">
+
+    <div class="versionanterior-card">
+      <h3 class="tagyellow">Versión 1.0</h3>
+      <img src="../static/Resourses/Logos/QroHuertoOld.png" alt="Versión 1.0" />
+      <p>Primer prototipo de QroHuerto, con información básica sobre semillas y cuidados.</p>
+    </div>
+
+    <div class="versionanterior-card">
+      <h3 class="tagyellow">Versión 2.0</h3>
+      <img src="../static/Resourses/Logos/QroHuerto Logo8.png" alt="Versión 2.0" />
+      <p>Se agregaron recomendaciones de temporada y guías interactivas de siembra.</p>
+    </div>
+
+    <div class="versionanterior-card">
+      <h3 class="tagyellow">Versión 3.0</h3>
+      <img src="../static/Resourses/Logos/QroHu4.png" alt="Versión 3.0" />
+      <p>Implementación de cuentas de usuario y sección “Mi Huerto” personalizada.</p>
+    </div>
+
+    <div class="version-card">
+      <h3 class="tagyellow">Versión 4.1 (Actual)</h3>
+      <img src="../static/Resourses/Logos/QH.png" alt="Versión 4.0" />
+      <p>Dashboard optimizado, catálogo completo de semillas y funcionalidades de comunidad.</p>
+    </div>
+
+            <div class="versionproxima-card">
+      <h3 class="tagyellow">Versión 5 Proximamente</h3>
+      <img src="../static/Resourses/Logos/QH.png" alt="Versión 4.0" />
+      <p>  Arquitectura de nueva generación gracias a React, FastAPI y PostgreSQL. 
+  “Mi Huerto” será más personal, rápido y potente que nunca.</p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<br><br><br>
+
+
+</section>
+
+
+
+<section class="qrohuerto__header" id="home">
+      <div class="section__container header__container" id="home">
+        <div class="header__content">
+          <span class="tagblue">Semillas Favoritas</span>
+
+          <h2>¡NO TE DETENGAS HASTA VER TU HUERTO FLORECER!</h2>
+          <p>
+Descubre todo tu potencial cultivando tus propios alimentos. Con nuestras guías expertas y herramientas prácticas, cada paso que das te acerca a una vida más sana, natural y sostenible.
+¡Hagamos del cultivo en casa un estilo de vida!
+          </p>
+            <div class="buttons">
+            <main id="app" class="bluee">
+    <nav class="redd">
+      <button type="button" class="active">Explora Más</button>
+    </nav>
+  </main>
+            </div>
+        </div>
+        <div class="header__image">
+          <img src="../static/assets/header.png" alt="header" />
+        </div>
+      </div>
+</section>
+
+    <div class="about" id="about">
+      <div class="section__container about__container">
+        <div class="about__image">
+          <img src="../static/assets/about.png" alt="about" />
+        </div>
+        <div class="about__content">
+        <span class="tagblue">Informativo</span>
+          <h2 class="section__header">¿Listo para Hacer un Cambio?</h2>
+          <p>
+Dar el primer paso hacia una vida más verde, autosuficiente y saludable puede parecer difícil, pero también es el más gratificante. Ya seas principiante o tengas experiencia en jardinería, en QroHuerto te acompañamos para que cultives con confianza y éxito.
+          </p>
+          <p>
+Con nuestras guías personalizadas, recursos interactivos y consejos prácticos, tendrás todo lo que necesitas para empezar tu propio huerto en casa, mantenerlo con amor y cosechar resultados reales.
+          </p>
+            <div class="buttons">
+            <main id="app" class="bluee">
+    <nav class="redd">
+      <button type="button" class="active">Explora Más</button>
+    </nav>
+  </main>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="service" id="service">
+      <div class="section__container service__container">
+        <h2 class="section__header">Qro Huerto</h2>
+        <div class="service__grid">
+          <div class="service__card">
+            <span>01</span>
+            <h4>Guías de Cultivo Personalizadas</h4>
+            <p>
+Nuestras guías están diseñadas para ayudarte a sembrar, cuidar y cosechar tus propias frutas y verduras según tu clima, espacio y nivel de experiencia.
+            </p>
+          </div>
+          <div class="service__card">
+            <span>02</span>
+            <h4>Calendario de Siembra por Temporada</h4>
+            <p>
+              Consulta fácilmente qué puedes plantar cada mes según tu región. Ideal para aprovechar al máximo cada estación del año.
+            </p>
+          </div>
+          <div class="service__card">
+            <span>03</span>
+            <h4>Asesoría para Tu Huerto en Casa</h4>
+            <p>
+Te brindamos consejos prácticos sobre tipos de suelo, riego, luz solar, y cómo organizar tu espacio para tener un huerto productivo y saludable.
+            </p>
+          </div>
+          <div class="service__card">
+            <span>04</span>
+            <h4>Educación Verde y Sostenible</h4>
+            <p>
+A través de artículos, juegos y recursos interactivos, fomentamos el amor por el cultivo y la conexión con la naturaleza, desde niños hasta adultos.
+            </p>
+          </div>
+          <div class="service__image">
+            <img src="../static/assets/service.png" alt="service" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+<section class="popular" id="class">
+  <div class="section__container popular__container">
+    <h2 class="section__header">Te presento al Equipo de Qrohuerto</h2>
+    <img src="../static/Resourses/Nosotros/myteam.png" alt="Imagen de huerto" 
+         style="width: 100%; height: 500px; object-fit: cover; margin-top: 20px; border-radius: 15px;">
+  </div>
+</section>
+
+
+    <section class="facility__container">
+      <div class="facility__image">
+        <img src="../static/assets/facility.jpg" alt="facility" />
+      </div>
+      <div class="facility__content">
+        <h2 class="section__header">Se Trata de Quién Puedes Llegar a Ser</h2>
+        <p>
+En QroHuerto, creemos que cultivar no solo transforma tu entorno, también transforma tu vida. Cada semilla que siembras es un paso hacia una versión más consciente, autosuficiente y en equilibrio contigo y con la naturaleza.
+        </p>
+        <p>
+Aquí no buscamos soluciones rápidas, sino un cambio de estilo de vida: uno que fomente el amor por lo natural, el respeto por el medio ambiente y el cuidado de tu salud física y emocional.
+Con el conocimiento adecuado, paciencia y dedicación, puedes lograr lo que nunca pensaste posible.
+        </p>
+        <p>
+Quién serás, depende de ti. Pero nosotros creemos en tu potencial.
+Con las herramientas correctas y el apoyo necesario, tu huerto y tú crecerán juntos.
+        </p>
+      </div>
+    </section>
+
+    <section class="section__container mentor__container">
+      <h2 class="section__header"><span class="titleyellow">Test</span> Simple de 3 preguntas Clave</h2>
+      <div class="mentor__grid">
+        <div class="mentor__card">
+          <img src="../static/assets/1.png" alt="mentor" />
+          <h4>Municipio</h4>
+          <p>Descubre qué cultivos se adaptan a tu zona en Querétaro.</p>
+        </div>
+        <div class="mentor__card">
+          <img src="../static/assets/2.png" alt="mentor" />
+          <h4>Temporada</h4>
+          <p>Identifica la estación del año ideal para sembrar tus semillas.</p>
+        </div>
+        <div class="mentor__card">
+          <img src="../static/assets/3.png" alt="mentor" />
+          <h4>Espacio</h4>
+          <p>Elige el tamaño de tu huerto, ya sea en macetas, jardín o terreno.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="banner" id="contact">
+      <div class="banner__content">
+        <h2>QroHuerto tiene una Historia muy interesante</h2>
+        <p>¿Te gustaria escucharla?<a href="{{ url_for('nosotros') }}">Conocenos</a></p>
+      </div>
+      <div class="banner__image">
+        <img src="../static/assets/banner.jpg" alt="banner" />
+      </div>
+    </section>
+
+   <section class="footer">
+  <div class="section__container footer__container">
+    <div class="footer__col">
+      <a href="#" class="footer__logo">
+        <img src="../static/Resourses/Logos/QH uerto.png" alt="logo QroHuerto" />
+      </a>
+      <ul class="footer__links">
+        <li>
+          <a href="#">
+            <span><i class="ri-phone-line"></i></span> +52 442 123 4567
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span><i class="ri-map-pin-line"></i></span> Querétaro, México
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span><i class="ri-mail-line"></i></span> contacto@qrohuerto.com
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <h4>Secciones</h4>
+      <ul class="footer__links">
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Test de Huerto</a></li>
+        <li><a href="#">Guía de Cultivos</a></li>
+        <li><a href="#">Temporadas</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <h4>Recomendaciones</h4>
+      <ul class="footer__links">
+        <li>Elige tu Municipio</li>
+        <li>Selecciona la Temporada</li>
+        <li>Indica tu Espacio</li>
+        <li>Obtén tus semillas ideales</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer__bar">
+    Copyright © 2025 QroHuerto. Todos los derechos reservados.
+  </div>
+</section>
+
+
+
+<script>
+window.addEventListener('load', () => {
+  const header = document.querySelector('header');
+  const slider = document.querySelector('.slider');
+
+  header.style.opacity = '1';
+  slider.style.opacity = '1';
+});
+</script>
+
+
+
+  <!-- SVG filter -->
+  <svg width="0" height="0" style="position: absolute;">
+    <filter id="goo" x="-50%" y="-50%" width="200%" height="200%">
+      <feComponentTransfer>
+        <feFuncA type="discrete" tableValues="0 1"></feFuncA>
+      </feComponentTransfer>
+      <feGaussianBlur stdDeviation="5"></feGaussianBlur>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="-5 11"></feFuncA>
+      </feComponentTransfer>
+    </filter>
+  </svg>
+
+
+      <script>
+    // Aplica el movimiento del fondo en cada botón
+    document.querySelectorAll("button").forEach(btn => {
+      btn.addEventListener("pointermove", (e) => {
+        const rect = btn.getBoundingClientRect();
+        btn.style.setProperty('--x', ((e.clientX - rect.x) / rect.width) * 100);
+        btn.style.setProperty('--y', ((e.clientY - rect.y) / rect.height) * 100);
+      });
+    });
+  </script>
+
+<script>
+  window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    const logoImg = document.getElementById('logo-img');
+
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled');
+      logoImg.src = '../static/Resourses/Logos/QH uerto C.png'; // nuevo logo
+    } else {
+      header.classList.remove('scrolled');
+      logoImg.src = '../static/Resourses/Logos/QH uerto.png'; // logo original
+    }
+  });
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const namePerf = document.querySelector(".NamePerf");
+    const perfilMenu = document.getElementById("perfilMenu");
+
+    namePerf.addEventListener("click", function (e) {
+        e.preventDefault();
+        perfilMenu.style.display = (perfilMenu.style.display === "block") ? "none" : "block";
+    });
+
+    // Cerrar si se hace clic fuera
+    document.addEventListener("click", function (e) {
+        if (!perfilMenu.contains(e.target) && e.target !== namePerf) {
+            perfilMenu.style.display = "none";
+        }
+    });
+});
+</script>
+
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="../static/JS/moritaarbol.js"></script>
+    <script src="../static/JS/main.js"></script>
+    <script src="../static/JS/slider.js"></script>
+  </body>
+</html>

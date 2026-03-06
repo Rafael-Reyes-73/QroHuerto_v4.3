@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-..." crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="/static/CSS/das.css">
+<link rel="stylesheet" href="/static/CSS/sectiondash.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <title>QroDash</title>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <section id="sidebar">
+<a href="#" class="brand">
+  <img src="../static/Resourses/img/QH.png" alt="Logo" class="logo">
+  <img src="../static/Resourses/img/QroDash.png" alt="Logo" class="rect-logo">
+</a>
+
+
+    <ul class="side-menu top">
+      <li class="active" data-section="dashboard">
+        <a href="#">
+          <i class='bx bxs-dashboard'></i>
+          <span class="text">QroDash</span>
+        </a>
+      </li>
+<li data-section="semillas">
+  <a href="#">
+<i class='bx bxs-circle'></i>
+    <span class="text">Semillas</span>
+  </a>
+</li>
+
+      <li data-section="usuarios">
+        <a href="#">
+          <i class='bx bxs-user'></i>
+          <span class="text">Usuarios</span>
+        </a>
+      </li>
+      <li data-section="contenido">
+        <a href="#">
+          <i class='bx bxs-book-content'></i>
+          <span class="text">Contenido</span>
+        </a>
+      </li>
+      <li data-section="moderadores">
+        <a href="#">
+          <i class='bx bxs-shield'></i>
+          <span class="text">Moderadores</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+  <!-- SIDEBAR -->
+
+  <!-- CONTENT -->
+  <section id="content">
+    <!-- NAVBAR -->
+<nav>
+  <i class='bx bx-menu' id="menu-toggle"></i>
+
+  <a href="#" class="nav-link">Categories</a>
+
+  <form action="#">
+    <div class="form-input">
+      <input type="search" placeholder="Search...">
+      <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+    </div>
+  </form>
+
+  <input type="checkbox" id="switch-mode" hidden>
+
+
+  <!-- PERFIL + NOMBRE + VERIFICADO -->
+  <div class="profile-container" id="profileMenuBtn">
+    <img src="../static/Resourses/user/user2.png" class="profile-img">
+    <span class="username">Rafael</span>
+    <i class='bx bxs-check-circle verified-icon'></i>
+  </div>
+
+  <!-- MENU DESPLEGABLE -->
+  <div class="profile-dropdown" id="profileDropdown">
+    <a href="/perfil"><i class='bx bxs-user'></i> Ver perfil</a>
+    <a href="/logout"><i class='bx bx-log-out'></i> Cerrar sesión</a>
+  </div>
+</nav>
+
+    <!-- NAVBAR -->
+
+    <!-- MAIN -->
+    <main>
+      <!-- DASHBOARD -->
+<!-- DASHBOARD / QroDask -->
+<section id="dashboard" class="active-section container-fluid mt-4">
+
+  <!-- Título -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h1 class="fw-bold">Home</h1>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Home</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Cards Principales -->
+  <div class="row g-3 mb-4">
+
+    <div class="col-12 col-md-4">
+      <div class="card shadow-sm py-3 px-4 d-flex flex-row align-items-center">
+        <i class='bx bxs-package fs-1 text-primary me-3'></i>
+        <div>
+          <h3 class="mb-0">36</h3>
+          <p class="text-muted mb-0">Semillas Activas</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-4">
+      <div class="card shadow-sm py-3 px-4 d-flex flex-row align-items-center">
+        <i class='bx bxs-shield fs-1 text-success me-3'></i>
+        <div>
+          <h3 class="mb-0">2</h3>
+          <p class="text-muted mb-0">Total Moderadores</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-4">
+      <div class="card shadow-sm py-3 px-4 d-flex flex-row align-items-center">
+        <i class='bx bxs-user fs-1 text-warning me-3'></i>
+        <div>
+          <h3 class="mb-0">{{ total }}</h3>
+          <p class="text-muted mb-0">Usuarios Totales</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Gráficas -->
+  <div class="row g-4">
+
+    <!-- Semillas -->
+    <div class="col-12 col-md-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h6 class="card-title">Semillas Activas vs Inactivas</h6>
+          <div style="position:relative; height:240px;">
+            <canvas id="chartSemillas"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Moderadores -->
+    <div class="col-12 col-md-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h6 class="card-title">Moderadores</h6>
+          <div style="position:relative; height:240px;">
+            <canvas id="chartModeradores"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Usuarios por mes -->
+    <div class="col-12 col-md-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h6 class="card-title">Usuarios registrados por mes</h6>
+          <div style="position:relative; height:240px;">
+            <canvas id="chartUsuarios"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+<!-- Tabla Top 10 Semillas -->
+<div class="card shadow-sm mt-5">
+  <div class="card-body">
+    <h3 class="mb-3">Top 10 Semillas más Cultivadas</h3>
+
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th>Posición</th>
+            <th>Imagen</th>
+            <th>Nombre</th>
+            <th>Veces Cultivada</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-warning fw-bold">
+            <td>🥇 1</td>
+            <td style="width:64px;">
+              <img src="/static/Resourses/FV Webp/Zanahoria.webp" alt="Zanahoria" width="48" height="48"
+                   class="rounded-circle" style="object-fit:cover;">
+            </td>
+            <td>Zanahoria</td>
+            <td>450</td>
+          </tr>
+
+          <tr class="table-secondary fw-bold">
+            <td>🥈 2</td>
+            <td>
+              <img src="/static/Resourses/FV Webp/Fresa.webp" alt="Fresa" width="48" height="48"
+                   class="rounded-circle" style="object-fit:cover;">
+            </td>
+            <td>Fresa</td>
+            <td>380</td>
+          </tr>
+
+          <tr class="table-warning" style="opacity: 0.85; font-weight: 700;">
+            <td>🥉 3</td>
+            <td>
+              <img src="/static/Resourses/FV Webp/cilantro.png" alt="Cilantro" width="48" height="48"
+                   class="rounded-circle" style="object-fit:cover;">
+            </td>
+            <td>Cilantro</td>
+            <td>300</td>
+          </tr>
+
+          <tr>
+            <td>4</td>
+            <td><img src="/static/Resourses/FV Webp/Lechuga Orejona.webp" alt="Lechuga" width="40" height="40" class="rounded-circle" style="object-fit:cover;"></td>
+            <td>Lechuga</td>
+            <td>280</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td><img src="/static/Resourses/FV Webp/Pepino.webp" alt="Pepino" width="40" height="40" class="rounded-circle" style="object-fit:cover;"></td>
+            <td>Pepino</td>
+            <td>260</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td><img src="/static/Resourses/FV Webp/Jicama.webp"alt="Jícama" width="40" height="40" class="rounded-circle" style="object-fit:cover;"></td>
+            <td>Jícama</td>
+            <td>240</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td><img src="/static/Resourses/FV Webp/Cebolla Blanca.webp" alt="Cebolla" width="40" height="40" class="rounded-circle" style="object-fit:cover;"></td>
+            <td>Cebolla</td>
+            <td>200</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td><img src="/static/Resourses/FV Webp/Col.webp"alt="Col" width="40" height="40" class="rounded-circle" style="object-fit:cover;"></td>
+            <td>Col</td>
+            <td>180</td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td><img src="/static/Resourses/FV Webp/Chile de Arbol.webp" alt="Chile Serrano" width="40" height="40" class="rounded-circle" style="object-fit:cover;"></td>
+            <td>Chile Serrano</td>
+            <td>160</td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td><img src="/static/Resourses/FV Webp/Tomate.webp" alt="Tomate" width="40" height="40" class="rounded-circle" style="object-fit:cover;"></td>
+            <td>Tomate</td>
+            <td>150</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+
+</section>
+
+
+
+<!-- SEMILLAS -->
+<!-- SEMILLAS -->
+<section id="semillas" class="hidden-section container-fluid py-3">
+
+  <!-- Título -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h1 class="fw-bold">Semillas</h1>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Semillas</a></li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Tarjetas estadísticas -->
+  <div class="row g-3 mb-4">
+
+    <div class="col-12 col-md-4">
+      <div class="card shadow-sm p-3 d-flex flex-row align-items-center">
+        <i class='bx bxs-package fs-1 text-primary me-3'></i>
+        <div>
+          <h4 class="mb-0">38</h4>
+          <small>Total de Semillas</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-4">
+      <div class="card shadow-sm p-3 d-flex flex-row align-items-center">
+        <i class='bx bxs-check-circle fs-1 text-success me-3'></i>
+        <div>
+          <h4 class="mb-0">36</h4>
+          <small>Semillas Activas</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-4">
+      <div class="card shadow-sm p-3 d-flex flex-row align-items-center">
+        <i class='bx bxs-x-circle fs-1 text-danger me-3'></i>
+        <div>
+          <h4 class="mb-0">2</h4>
+          <small>Inactivas</small>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Gráficas -->
+  <div class="row g-3 mb-4">
+
+<!-- Semillas activas vs inactivas -->
+<div class="col-12 col-md-4">
+  <div class="card">
+    <div class="card-body">
+      <h6 class="card-title">Semillas Activas</h6>
+      <div style="position:relative; height:220px;">
+        <canvas id="chartSemillasActivas"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Semillas por clima -->
+<div class="col-12 col-md-4">
+  <div class="card">
+    <div class="card-body">
+      <h6 class="card-title">Semillas por clima</h6>
+      <div style="position:relative; height:220px;">
+        <canvas id="chartSemillasClima"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Semillas por temporada -->
+<div class="col-12 col-md-4">
+  <div class="card">
+    <div class="card-body">
+      <h6 class="card-title">Semillas por temporada</h6>
+      <div style="position:relative; height:220px;">
+        <canvas id="chartSemillasTemporada"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  </div>
+
+  <!-- FORMULARIO + TABLA -->
+  <div class="row g-4">
+
+    <!-- Formulario -->
+    <div class="col-12 col-lg-4">
+      <div class="card shadow-sm p-3">
+        <h4 class="fw-bold mb-3">Registrar Semilla</h4>
+
+        <form>
+          <div class="mb-2">
+            <label class="form-label">Nombre</label>
+            <input type="text" class="form-control" placeholder="Ej: Zanahoria">
+          </div>
+
+          <div class="mb-2">
+            <label class="form-label">Tipo</label>
+            <select class="form-select">
+              <option value="">Seleccione...</option>
+              <option value="fruta">Fruta</option>
+              <option value="verdura">Verdura</option>
+            </select>
+          </div>
+
+          <div class="mb-2">
+            <label class="form-label">Municipios</label>
+            <input type="text" class="form-control" placeholder="Querétaro, Corregidora">
+          </div>
+
+          <div class="mb-2">
+            <label class="form-label">Clima</label>
+            <select class="form-select">
+              <option value="">Seleccione...</option>
+              <option value="templado">Templado</option>
+              <option value="frío">Frío</option>
+              <option value="cálido">Cálido</option>
+            </select>
+          </div>
+
+          <div class="mb-2">
+            <label class="form-label">Vitaminas</label>
+            <select class="form-select">
+              <option value="">Seleccione...</option>
+              <option>A</option>
+              <option>B</option>
+              <option>C</option>
+              <option>D</option>
+              <option>E</option>
+              <option>K</option>
+            </select>
+          </div>
+
+          <div class="mb-2">
+            <label class="form-label">Temporada</label>
+            <select class="form-select">
+              <option value="">Seleccione...</option>
+              <option>Primavera</option>
+              <option>Verano</option>
+              <option>Otoño</option>
+              <option>Invierno</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Imagen (446x700 px recomendado)</label>
+            <input type="file" class="form-control" accept="image/*">
+          </div>
+
+          <button class="btn btn-success w-100">Registrar</button>
+
+        </form>
+      </div>
+    </div>
+
+    <!-- TABLA -->
+    <div class="col-12 col-lg-8">
+      <div class="card shadow-sm p-3">
+
+        <h4 class="fw-bold mb-3">Lista de Semillas</h4>
+
+        <div class="table-responsive">
+          <table class="table table-striped align-middle">
+            <thead class="table-dark">
+              <tr>
+                <th>ID</th>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Tipo</th>
+                <th>Municipios</th>
+                <th>Clima</th>
+                <th>Vitaminas</th>
+                <th>Temporada</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+
+<tbody>
+
+<tr><td>1</td><td><img src="/static/Resourses/FV Webp/Ajo.webp" width="40" class="rounded"></td><td>Ajo</td><td>Verdura</td><td>Querétaro</td><td>Templado</td><td>B6</td><td>Invierno</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+<tr><td>2</td><td><img src="/static/Resourses/FV Webp/Calabaza V.webp" width="40" class="rounded"></td><td>Calabaza verde</td><td>Verdura</td><td>Querétaro</td><td>Cálido</td><td>A</td><td>Verano</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+<tr><td>3</td><td><img src="/static/Resourses/FV Webp/calabaza.png" width="40" class="rounded"></td><td>Calabaza naranja</td><td>Verdura</td><td>Querétaro</td><td>Cálido</td><td>A</td><td>Otoño</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+<tr><td>4</td><td><img src="/static/Resourses/FV Webp/Cebolla blanca.webp" width="40" class="rounded"></td><td>Cebolla blanca</td><td>Verdura</td><td>Querétaro</td><td>Templado</td><td>C</td><td>Invierno</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+<tr><td>5</td><td><img src="/static/Resourses/FV Webp/Cebolla Morada.webp" width="40" class="rounded"></td><td>Cebolla morada</td><td>Verdura</td><td>Querétaro</td><td>Templado</td><td>C</td><td>Invierno</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+<tr><td>6</td><td><img src="/static/Resourses/FV Webp/Cebolla.webp" width="40" class="rounded"></td><td>Cebolla Cambray</td><td>Verdura</td><td>Querétaro</td><td>Templado</td><td>C</td><td>Invierno</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+<tr><td>7</td><td><img src="/static/Resourses/FV Webp/Chile de Arbol.webp" width="40" class="rounded"></td><td>Chile de Árbol</td><td>Verdura</td><td>Querétaro</td><td>Cálido</td><td>C</td><td>Primavera</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+<tr><td>8</td><td><img src="/static/Resourses/FV Webp/Chile jalapeño.webp" width="40" class="rounded"></td><td>Chile Jalapeño</td><td>Verdura</td><td>Querétaro</td><td>Cálido</td><td>C</td><td>Primavera</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+<tr><td>9</td><td><img src="/static/Resourses/FV Webp/Chile1.webp" width="40" class="rounded"></td><td>Chile Morrón</td><td>Verdura</td><td>Querétaro</td><td>Cálido</td><td>C</td><td>Primavera</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+<tr><td>10</td><td><img src="/static/Resourses/FV Webp/cilantro.png" width="40" class="rounded"></td><td>Cilantro</td><td>Hierba</td><td>Querétaro</td><td>Templado</td><td>K</td><td>Invierno</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+<tr><td>11</td><td><img src="/static/Resourses/FV Webp/Col.webp" width="40" class="rounded"></td><td>Col</td><td>Verdura</td><td>Querétaro</td><td>Frío</td><td>C</td><td>Invierno</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+<tr><td>12</td><td><img src="/static/Resourses/FV Webp/Durazno.webp" width="40" class="rounded"></td><td>Durazno</td><td>Fruta</td><td>Querétaro</td><td>Templado</td><td>A</td><td>Primavera</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+<tr><td>13</td><td><img src="/static/Resourses/FV Webp/Fresa.webp" width="40" class="rounded"></td><td>Fresa</td><td>Fruta</td><td>Querétaro</td><td>Frío</td><td>C</td><td>Primavera</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+<tr><td>14</td><td><img src="/static/Resourses/FV Webp/granada.png" width="40" class="rounded"></td><td>Granada</td><td>Fruta</td><td>Querétaro</td><td>Seco</td><td>C</td><td>Otoño</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+<tr><td>15</td><td><img src="/static/Resourses/FV Webp/Habanero.webp" width="40" class="rounded"></td><td>Chile Habanero</td><td>Verdura</td><td>Querétaro</td><td>Cálido</td><td>C</td><td>Primavera</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+<tr><td>16</td><td><img src="/static/Resourses/FV Webp/jicama2.png" width="40" class="rounded"></td><td>Jícama</td><td>Tubérculo</td><td>Querétaro</td><td>Cálido</td><td>C</td><td>Verano</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+<tr><td>17</td><td><img src="/static/Resourses/FV Webp/Jitomate.webp" width="40" class="rounded"></td><td>Jitomate</td><td>Verdura</td><td>Querétaro</td><td>Cálido</td><td>A</td><td>Primavera</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+<tr><td>18</td><td><img src="/static/Resourses/FV Webp/Lechuga Orejona.webp" width="40" class="rounded"></td><td>Lechuga Orejona</td><td>Verdura</td><td>Querétaro</td><td>Frío</td><td>K</td><td>Invierno</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+<tr><td>19</td><td><img src="/static/Resourses/FV Webp/lechuga2.png" width="40" class="rounded"></td><td>Lechuga</td><td>Verdura</td><td>Querétaro</td><td>Frío</td><td>K</td><td>Invierno</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+<tr><td>20</td><td><img src="/static/Resourses/FV Webp/Lima.webp" width="40" class="rounded"></td><td>Lima</td><td>Fruta</td><td>Querétaro</td><td>Cálido</td><td>C</td><td>Primavera</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+<tr><td>21</td><td><img src="/static/Resourses/FV Webp/limon2.png" width="40" class="rounded"></td><td>Limón</td><td>Fruta</td><td>Querétaro</td><td>Cálido</td><td>C</td><td>Primavera</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+<tr><td>22</td><td><img src="/static/Resourses/FV Webp/Maiz.webp" width="40" class="rounded"></td><td>Maíz</td><td>Grano</td><td>Querétaro</td><td>Cálido</td><td>B</td><td>Verano</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+<tr><td>23</td><td><img src="/static/Resourses/FV Webp/mandarina.png" width="40" class="rounded"></td><td>Mandarina</td><td>Fruta</td><td>Querétaro</td><td>Templado</td><td>C</td><td>Otoño</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+<tr><td>24</td><td><img src="/static/Resourses/FV Webp/naranja.png" width="40" class="rounded"></td><td>Naranja</td><td>Fruta</td><td>Querétaro</td><td>Templado</td><td>C</td><td>Otoño</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+<tr><td>25</td><td><img src="/static/Resourses/FV Webp/Mango.webp" width="40" class="rounded"></td><td>Mango</td><td>Fruta</td><td>Querétaro</td><td>Cálido</td><td>A</td><td>Verano</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+<tr><td>26</td><td><img src="/static/Resourses/FV Webp/Melon.webp width="40" class="rounded"></td><td>Melón</td><td>Fruta</td><td>Querétaro</td><td>Cálido</td><td>A</td><td>Verano</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+<tr><td>27</td><td><img src="/static/Resourses/FV Webp/Moras.webp" width="40" class="rounded"></td><td>Mora</td><td>Fruta</td><td>Querétaro</td><td>Frío</td><td>C</td><td>Primavera</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+<tr><td>28</td><td><img src="/static/Resourses/FV Webp/Papaya.webp" width="40" class="rounded"></td><td>Papaya</td><td>Fruta</td><td>Querétaro</td><td>Cálido</td><td>A</td><td>Verano</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+<tr><td>29</td><td><img src="/static/Resourses/FV Webp/Pepino.webp" width="40" class="rounded"></td><td>Pepino</td><td>Verdura</td><td>Querétaro</td><td>Cálido</td><td>K</td><td>Verano</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+<tr><td>30</td><td><img src="/static/Resourses/FV Webp/Pera.webp" width="40" class="rounded"></td><td>Pera</td><td>Fruta</td><td>Querétaro</td><td>Frío</td><td>C</td><td>Invierno</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+<tr><td>31</td><td><img src="/static/Resourses/FV Webp/perejil.webp" width="40" class="rounded"></td><td>Perejil</td><td>Hierba</td><td>Querétaro</td><td>Frío</td><td>K</td><td>Invierno</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+<tr><td>32</td><td><img src="/static/Resourses/FV Webp/Piña.webp" width="40" class="rounded"></td><td>Piña</td><td>Fruta</td><td>Querétaro</td><td>Cálido</td><td>C</td><td>Verano</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+<tr><td>33</td><td><img src="/static/Resourses/FV Webp/Platano.webp" width="40" class="rounded"></td><td>Plátano</td><td>Fruta</td><td>Querétaro</td><td>Cálido</td><td>B6</td><td>Verano</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+<tr><td>34</td><td><img src="/static/Resourses/FV Webp/Rabano.webp" width="40" class="rounded"></td><td>Rábano</td><td>Verdura</td><td>Querétaro</td><td>Frío</td><td>C</td><td>Invierno</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+<tr><td>35</td><td><img src="/static/Resourses/FV Webp/Sandia.webp" width="40" class="rounded"></td><td>Sandía</td><td>Fruta</td><td>Querétaro</td><td>Cálido</td><td>A</td><td>Verano</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+<tr><td>36</td><td><img src="/static/Resourses/FV Webp/Tomate.webp" width="40" class="rounded"></td><td>Tomate</td><td>Verdura</td><td>Querétaro</td><td>Cálido</td><td>A</td><td>Primavera</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+<tr><td>37</td><td><img src="/static/Resourses/FV Webp/Uva.webp" width="40" class="rounded"></td><td>Uva</td><td>Fruta</td><td>Querétaro</td><td>Templado</td><td>B</td><td>Otoño</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+<tr><td>38</td><td><img src="/static/Resourses/FV Webp/Zanahoria.webp" width="40" class="rounded"></td><td>Zanahoria</td><td>Verdura</td><td>Querétaro</td><td>Frío</td><td>A</td><td>Invierno</td><td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td></tr>
+
+</tbody>
+
+          </table>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+
+
+
+
+      <!-- USUARIOS -->
+<!-- USUARIOS -->
+<section id="usuarios" class="hidden-section container-fluid py-3">
+  <!-- Título -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h1 class="fw-bold">Usuarios</h1>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Usuarios</a></li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Cards -->
+  <div class="row row-cols-1 row-cols-md-3 g-3 mb-3">
+    <div class="col">
+      <div class="card h-100">
+        <div class="card-body d-flex align-items-center gap-3">
+          <i class="bx bxs-user fs-1 text-success"></i>
+          <div>
+            <h3 class="mb-0">{{ total }}</h3>
+            <p class="mb-0 text-muted">Total de Usuarios</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100">
+        <div class="card-body d-flex align-items-center gap-3">
+          <i class="bx bxs-user-check fs-1 text-success"></i>
+          <div>
+            <h3 class="mb-0">{{ total_activos }}</h3>
+            <p class="mb-0 text-muted">Usuarios Activos</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100">
+        <div class="card-body d-flex align-items-center gap-3">
+          <i class="bx bxs-user-x fs-1 text-danger"></i>
+          <div>
+            <h3 class="mb-0">{{ total_inactivos }}</h3>
+            <p class="mb-0 text-muted">Usuarios Inactivos</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Layout principal: Left = Tabla / Right = Gráficas + Mapa -->
+  <div class="row g-4">
+    <!-- IZQUIERDA: Tabla y formulario -->
+
+
+    <div class="col-12 col-lg-5">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Registrar Usuario</h5>
+<div id="alertas"></div>
+
+          <form id="form-registro" class="row g-2" method="POST" enctype="multipart/form-data">
+
+            <div class="col-12 col-md-6">
+              <label class="form-label">Nombre</label>
+              <input type="text" name="nombre" class="form-control" placeholder="Ej: Juan">
+            </div>
+            <div class="col-12 col-md-6">
+              <label class="form-label">Apellido Paterno</label>
+              <input type="text" name="apellido_paterno" class="form-control" placeholder="Ej: Pérez">
+            </div>
+            <div class="col-12 col-md-6">
+              <label class="form-label">Apellido Materno</label>
+              <input type="text" name="apellido_materno" class="form-control" placeholder="Ej: Gómez">
+            </div>
+            <div class="col-12 col-md-6">
+              <label class="form-label">Correo</label>
+              <input type="email" name="email" class="form-control" placeholder="usuario@correo.com">
+            </div>
+            <div class="col-12 col-md-6">
+              <label class="form-label">Contraseña</label>
+              <input type="password" name="password" class="form-control" placeholder="Ingrese una contraseña">
+            </div>
+            <div class="col-12 col-md-6">
+              <label class="form-label">Municipio</label>
+              <select name="municipio" class="form-select">
+                <option value="">Seleccione...</option>
+    <option value="Amealco de Bonfil">Amealco de Bonfil</option>
+    <option value="Arroyo Seco">Arroyo Seco</option>
+    <option value="Cadereyta de Montes">Cadereyta de Montes</option>
+    <option value="Colón">Colón</option>
+    <option value="Corregidora">Corregidora</option>
+    <option value="El Marqués">El Marqués</option>
+    <option value="Ezequiel Montes">Ezequiel Montes</option>
+    <option value="Huimilpan">Huimilpan</option>
+    <option value="Jalpan de Serra">Jalpan de Serra</option>
+    <option value="Landa de Matamoros">Landa de Matamoros</option>
+    <option value="Pedro Escobedo">Pedro Escobedo</option>
+    <option value="Peñamiller">Peñamiller</option>
+    <option value="Pinal de Amoles">Pinal de Amoles</option>
+    <option value="Querétaro">Querétaro</option>
+    <option value="San Joaquín">San Joaquín</option>
+    <option value="San Juan del Río">San Juan del Río</option>
+    <option value="Tequisquiapan">Tequisquiapan</option>
+    <option value="Tolimán">Tolimán</option>
+              </select>
+            </div>
+            <div class="col-12 col-md-6">
+              <label class="form-label">Apodo</label>
+              <input type="text" name="apodo" class="form-control" placeholder="Ej: Juanchi">
+            </div>
+            <div class="col-12 col-md-6">
+              <label class="form-label">Foto de Perfil</label>
+              <input type="file" name="foto_perfil" class="form-control" accept="image/*">
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-success">Registrar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Tabla CRUD -->
+      <div class="card mt-3">
+        <div class="card-body">
+          <h5 class="card-title">Lista de Usuarios</h5>
+          <div class="table-responsive">
+            <table class="table table-striped table-hover align-middle">
+              <thead class="table-light">
+                <tr>
+                  <th>ID</th>
+                  <th>Foto</th>
+                  <th>Nombre</th>
+                  <th>Municipio</th>
+                  <th>Apodo</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for user in usuarios %}
+                <tr>
+                  <td>{{ user.id }}</td>
+                  <td style="width:56px;">
+                    {% if user.foto_perfil %}
+                      <img src="{{ url_for('static', filename='uploads/' + user.foto_perfil) }}" width="40" height="40" class="rounded-circle" style="object-fit:cover;">
+                    {% else %}
+                      <img src="{{ url_for('static', filename='img/default-user.png') }}" width="40" height="40" class="rounded-circle" style="object-fit:cover;">
+                    {% endif %}
+                  </td>
+                  <td>{{ user.nombre }} {{ user.apellido_paterno }} {{ user.apellido_materno }}</td>
+                  <td>{{ user.municipio }}</td>
+                  <td>{{ user.apodo }}</td>
+<td>
+  <a href="{{ url_for('editar_usuario', id=user['id']) }}" class="btn btn-sm btn-outline-primary">Editar</a>
+
+  <form action="{{ url_for('eliminar_usuario', id=user['id']) }}" method="POST" style="display:inline;" onsubmit="return confirm('¿Seguro que quieres eliminar este usuario?');">
+    <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+  </form>
+</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- DERECHA: Gráficas y Mapa -->
+<!-- DERECHA: Gráficas y Mapa -->
+<div class="col-12 col-lg-7">
+  <div class="row g-3">
+
+
+
+    <!-- Usuarios por municipio (bar horizontal) -->
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h6 class="card-title">Usuarios por municipio</h6>
+          <div style="position:relative; height:260px;">
+            <canvas id="chartMunicipios"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actividad semanal -->
+    <div class="col-12 col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h6 class="card-title">Actividad semanal</h6>
+          <div style="position:relative; height:180px;">
+            <canvas id="chartSemana"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Usuarios activos (% gauge semicircular) -->
+    <div class="col-12 col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h6 class="card-title">% Usuarios activos</h6>
+          <div style="position:relative; height:180px;">
+            <canvas id="chartGauge"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+  </div>
+</section>
+
+
+
+
+      <!-- CONTENIDO -->
+<!-- CONTENIDO -->
+<section id="contenido" class="hidden-section container-fluid mt-4">
+
+  <!-- Título -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h1 class="fw-bold">Contenido</h1>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Contenido</a></li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Formulario + Tabla -->
+  <div class="row g-4">
+
+    <!-- FORMULARIO -->
+    <div class="col-12 col-lg-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+
+          <h4 class="mb-3 fw-semibold">Publicar Nuevo Contenido</h4>
+
+          <form method="POST" action="{{ url_for('contenido') }}" enctype="multipart/form-data">
+
+            <!-- Slider -->
+            <div class="mb-3">
+              <label class="form-label">Selecciona Slider:</label>
+              <select name="slider" class="form-select" >
+                <option value="slider1">Slider 1</option>
+                <option value="slider2">Slider 2</option>
+                <option value="slider3">Slider 3</option>
+                <option value="slider4">Slider 4</option>
+                <option value="slider5">Slider 5</option>
+              </select>
+            </div>
+
+            <!-- Título inicial -->
+            <div class="mb-3">
+              <label class="form-label">Título Inicial:</label>
+              <input type="text" name="titulo_inicial" class="form-control"
+                     placeholder="Ej: Bienvenido a QroHuerto" >
+            </div>
+
+            <!-- Conector -->
+            <div class="mb-3">
+              <label class="form-label">Conector:</label>
+              <input type="text" name="conector" class="form-control"
+                     placeholder="Ej: y, para, con..." >
+            </div>
+
+            <!-- Título final -->
+            <div class="mb-3">
+              <label class="form-label">Título Final:</label>
+              <input type="text" name="titulo_final" class="form-control"
+                     placeholder="Ej: Cultiva tus propias verduras" >
+            </div>
+
+            <!-- Anuncio -->
+            <div class="mb-3">
+              <label class="form-label">Anuncio:</label>
+              <textarea name="anuncio" rows="3" class="form-control"
+                        placeholder="Escribe el anuncio aquí..." ></textarea>
+            </div>
+
+            <!-- Notas -->
+            <div class="mb-3">
+              <label class="form-label">Notas para el desarrollador:</label>
+              <textarea name="notas" rows="3" class="form-control"
+                        placeholder="Indica detalles técnicos o comentarios..."></textarea>
+            </div>
+
+            <!-- Imagen -->
+            <div class="mb-3">
+              <label class="form-label">Imagen del Slider (446x700px):</label>
+              <input type="file" class="form-control" name="imagen" accept="image/*" >
+            </div>
+
+            <!-- Botón -->
+            <button type="submit" class="btn btn-primary w-100 py-2">
+              Publicar
+            </button>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- TABLA CRUD -->
+    <div class="col-12 col-lg-8">
+      <div class="card shadow-sm">
+        <div class="card-body">
+
+          <h4 class="mb-3 fw-semibold">Gestión de Sliders</h4>
+
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle">
+
+              <thead class="table-dark">
+                <tr>
+                  <th>ID</th>
+                  <th>Slider</th>
+                  <th>Título</th>
+                  <th>Nota</th>
+                  <th>Imagen</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {% for contenido in contenidos %}
+                <tr>
+                  <td>{{ contenido.id }}</td>
+                  <td>{{ contenido.slider }}</td>
+
+                  <td>{{ contenido.titulo_inicial }} {{ contenido.conector }} {{ contenido.titulo_final }}</td>
+
+                  <td>{{ contenido.notas }}</td>
+
+                  <td>
+                    <img src="{{ url_for('static', filename='uploads/' ~ contenido.imagen) }}"
+                         width="60" class="rounded">
+                  </td>
+
+                  <td class="text-center">
+
+                    <!-- Editar -->
+                    <a href="{{ url_for('editar_contenido', id=contenido.id) }}"
+                       class="btn btn-sm btn-warning mb-1">
+                      Editar
+                    </a>
+                    <br>
+
+                    <!-- Eliminar -->
+                    <form action="{{ url_for('eliminar_contenido', id=contenido.id) }}"
+                          method="POST"
+                          onsubmit="return confirm('¿Seguro que quieres eliminar este contenido?');">
+
+                      <button type="submit" class="btn btn-sm btn-danger">
+                        Eliminar
+                      </button>
+
+                    </form>
+
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+      <!-- MODERADORES -->
+<!-- MODERADORES -->
+<section id="moderadores" class="hidden-section container-fluid mt-4">
+
+  <!-- Título -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h1 class="fw-bold">Moderadores</h1>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Moderadores</a></li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Cards -->
+  <div class="row g-3 mb-4">
+
+    <div class="col-md-4 col-12">
+      <div class="card shadow-sm p-3 d-flex flex-row align-items-center">
+        <i class='bx bxs-shield display-6 text-primary me-3'></i>
+        <div>
+          <h3 class="fw-bold mb-0">2</h3>
+          <p class="text-muted mb-0">Total de Moderadores</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 col-12">
+      <div class="card shadow-sm p-3 d-flex flex-row align-items-center">
+        <i class='bx bxs-user-check display-6 text-success me-3'></i>
+        <div>
+          <h3 class="fw-bold mb-0">2</h3>
+          <p class="text-muted mb-0">Activos</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 col-12">
+      <div class="card shadow-sm p-3 d-flex flex-row align-items-center">
+        <i class='bx bxs-user-x display-6 text-danger me-3'></i>
+        <div>
+          <h3 class="fw-bold mb-0">0</h3>
+          <p class="text-muted mb-0">Inactivos</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Formulario + Tabla -->
+  <div class="row g-4">
+
+    <!-- FORMULARIO -->
+    <div class="col-lg-4 col-12">
+      <div class="card shadow-sm">
+        <div class="card-body">
+
+          <h4 class="mb-3 fw-semibold">Registrar Moderador</h4>
+
+          <form>
+
+            <!-- Rol -->
+            <div class="mb-3">
+              <label class="form-label">Rol:</label>
+              <select name="rol" class="form-select" >
+                <option value="admin">Admin</option>
+                <option value="diseñador">Diseñador</option>
+              </select>
+            </div>
+
+            <!-- Nombre -->
+            <div class="mb-3">
+              <label class="form-label">Nombre:</label>
+              <input type="text" name="nombre" class="form-control" placeholder="Ej: Carlos" >
+            </div>
+
+            <div class="row">
+              <div class="col-6 mb-3">
+                <label class="form-label">Apellido Paterno:</label>
+                <input type="text" name="apellido_paterno" class="form-control" placeholder="Ej: Gómez" >
+              </div>
+              <div class="col-6 mb-3">
+                <label class="form-label">Apellido Materno:</label>
+                <input type="text" name="apellido_materno" class="form-control" placeholder="Ej: López" >
+              </div>
+            </div>
+
+            <!-- Correo -->
+            <div class="mb-3">
+              <label class="form-label">Correo:</label>
+              <input type="email" name="email" class="form-control" placeholder="moderador@correo.com" >
+            </div>
+
+            <!-- Foto -->
+            <div class="mb-3">
+              <label class="form-label">Foto de Perfil:</label>
+              <input type="file" class="form-control" name="foto_perfil" accept="image/*" >
+            </div>
+
+            <!-- Botón -->
+            <button type="submit" class="btn btn-primary w-100 py-2">Registrar</button>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- TABLA -->
+    <div class="col-lg-8 col-12">
+      <div class="card shadow-sm">
+        <div class="card-body">
+
+          <h4 class="fw-semibold mb-3">Lista de Moderadores</h4>
+
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle">
+
+              <thead class="table-dark">
+                <tr>
+                  <th>ID</th>
+                  <th>Foto</th>
+                  <th>Nombre</th>
+                  <th>Rol</th>
+                  <th>Correo</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+
+              <tbody>
+
+                <tr>
+                  <td>1</td>
+                  <td><img src="/static/Resourses/user/user2.png" width="45" height="45" class="rounded-circle"></td>
+                  <td>Rafael Reyes Chavez</td>
+                  <td>Admin</td>
+                  <td>rafael.reyes@gmail.com</td>
+                  <td class="text-center">
+                    <button class="btn btn-warning btn-sm mb-1">Editar</button>
+                    <button class="btn btn-danger btn-sm">Eliminar</button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>2</td>
+                  <td><img src="/static/Resourses/user/user3.png" width="45" height="45" class="rounded-circle"></td>
+                  <td>Isaac Abdiel Sanchez Lopez</td>
+                  <td>Diseñador</td>
+                  <td>isaac1234@gmail.com</td>
+                  <td class="text-center">
+                    <button class="btn btn-warning btn-sm mb-1">Editar</button>
+                    <button class="btn btn-danger btn-sm">Eliminar</button>
+                  </td>
+                </tr>
+
+              </tbody>
+
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+    </main>
+    <!-- MAIN -->
+  </section>
+<!-- Modal de mensajes -->
+<div id="flashModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <span id="closeModal" class="close">&times;</span>
+    <p id="flashMessage"></p>
+  </div>
+</div>
+
+<style>
+.modal {
+  position: fixed;
+  z-index: 5000;
+  left: 0; top: 0; width: 100%; height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+  display: flex; align-items: center; justify-content: center;
+}
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+}
+.modal-content.success {
+  border: 2px solid green;
+  color: green;
+}
+.modal-content.error {
+  border: 2px solid red;
+  color: red;
+}
+.close {
+  float: right;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+</style>
+
+
+
+<script src="../static/JS/dash.js"></script>
+<script src="../static/JS/graficas.js"></script>
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  new Chart(document.getElementById("chartSemillasActivas"), {
+    type: "pie",
+    data: {
+      labels: ["Activas", "Inactivas"],
+      datasets: [{
+        data: [36, 2],
+        backgroundColor: ["#28a745", "#dc3545"]
+      }]
+    }
+  });
+
+  new Chart(document.getElementById("chartSemillasClima"), {
+    type: "bar",
+    data: {
+      labels: ["Templado", "Frío", "Cálido"],
+      datasets: [{
+        label: "Cantidad",
+        data: [35, 25, 20]
+      }]
+    }
+  });
+
+  new Chart(document.getElementById("chartSemillasTemporada"), {
+    type: "doughnut",
+    data: {
+      labels: ["Primavera", "Verano", "Otoño", "Invierno"],
+      datasets: [{
+        data: [30, 20, 25, 30]
+      }]
+    }
+  });
+
+});
+</script>
+
+<script>
+  const btnProfile = document.getElementById("profileMenuBtn");
+  const menuProfile = document.getElementById("profileDropdown");
+
+  btnProfile.addEventListener("click", () => {
+    menuProfile.style.display =
+      menuProfile.style.display === "flex" ? "none" : "flex";
+  });
+
+  // Cerrar si clic fuera
+  document.addEventListener("click", (e) => {
+    if (!btnProfile.contains(e.target) && !menuProfile.contains(e.target)) {
+      menuProfile.style.display = "none";
+    }
+  });
+</script>
+<script>
+document.getElementById("form-registro").addEventListener("submit", function(e) {
+    let errores = [];
+
+    let nombre = document.querySelector("input[name='nombre']").value.trim();
+    let apPat = document.querySelector("input[name='apellido_paterno']").value.trim();
+    let apMat = document.querySelector("input[name='apellido_materno']").value.trim();
+    let email = document.querySelector("input[name='email']").value.trim();
+    let pass = document.querySelector("input[name='password']").value.trim();
+    let municipio = document.querySelector("select[name='municipio']").value;
+    let apodo = document.querySelector("input[name='apodo']").value.trim();
+    let foto = document.querySelector("input[name='foto_perfil']").value;
+
+    if (nombre === "") errores.push("El nombre es obligatorio.");
+    if (apPat === "") errores.push("El apellido paterno es obligatorio.");
+    if (apMat === "") errores.push("El apellido materno es obligatorio.");
+
+    if (email === "") {
+        errores.push("El correo es obligatorio.");
+    } else {
+        let regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!regexCorreo.test(email)) errores.push("El correo no es válido.");
+    }
+
+    if (pass.length < 6) errores.push("La contraseña debe tener al menos 6 caracteres.");
+
+    if (municipio === "") errores.push("Seleccione un municipio.");
+
+    if (apodo === "") errores.push("El apodo es obligatorio.");
+
+    if (foto === "") errores.push("Debe subir una foto de perfil.");
+
+    if (errores.length > 0) {
+        e.preventDefault(); 
+
+        let contenedor = document.getElementById("alertas");
+
+        contenedor.innerHTML = `
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Se encontraron errores:</strong><br>
+                ${errores.map(err => "- " + err).join("<br>")}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        `;
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+});
+</script>
+
+<script>
+  const TOTAL_ACTIVOS = {{ total_activos }};
+  const TOTAL_INACTIVOS = {{ total_inactivos }};
+</script>
+
+</body>
+</html>

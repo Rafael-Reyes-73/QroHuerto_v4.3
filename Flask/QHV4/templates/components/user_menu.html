@@ -1,0 +1,22 @@
+<!-- Opciones superiores del usuario -->
+<div class="divusuario">
+  <nav class="top-menu-box">
+    <a href="#" class="corona">Favoritas</a>
+    <a href="#" class="corona">My Huerto</a>
+
+    <div class="profile-pic">
+      {% if foto_perfil %}
+        <img src="{{ url_for('static', filename='uploads/' + foto_perfil) }}" alt="Foto de {{ apodo }}">
+      {% else %}
+        <img src="{{ url_for('static', filename='Resourses/Img/user.png') }}" alt="Foto por defecto">
+      {% endif %}
+    </div>
+
+    <a href="#" class="NamePerf">{{ apodo }}</a>
+
+    <!-- MENÚ DESPLEGABLE -->
+    <div id="perfilMenu" class="perfil-menu">
+      <a href="{{ url_for('logout') }}">Cerrar sesión</a>
+    </div>
+  </nav>
+</div>

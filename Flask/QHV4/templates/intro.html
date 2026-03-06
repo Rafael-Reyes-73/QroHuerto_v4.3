@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QroHuerto</title>
+    <link rel="icon" href="../static/Resourses/Logos/QH.png" type="image/x-icon" />
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <video id="video" autoplay muted>
+        <source src="../static/Resourses/Video/QroHuertoPresentacion2025.mp4" type="video/mp4">
+    </video>
+
+    <script>
+        var video = document.getElementById('video');
+        video.onended = function() {
+            window.location.href = "{{ url_for('login') }}";
+        };
+    </script>
+</body>
+</html>

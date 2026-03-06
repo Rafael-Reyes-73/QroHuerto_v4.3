@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Admin QroHuerto</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        background: url('/static/bg.jpg') no-repeat center center/cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+    }
+
+    .glass-box {
+        width: 380px;
+        padding: 40px;
+        border-radius: 25px;
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        text-align: center;
+    }
+
+    .logo {
+        width: 70%;
+        max-width: 260px;
+        height: auto;
+        display: block;
+        margin: 0 auto 25px auto;
+    }
+
+    .input-box {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    input {
+        width: 90%;
+        padding: 14px;
+        margin: 12px auto;
+        border: none;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.75);
+        font-size: 15px;
+        outline: none;
+        display: block;
+    }
+
+    button {
+        width: 90%;
+        padding: 14px;
+        margin-top: 5px;
+        border: none;
+        border-radius: 12px;
+        background: #0e8c37;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: .2s;
+    }
+
+    button:hover {
+        background: #0a6b2a;
+    }
+
+    /* --- ALERTA --- */
+    .alert {
+        width: 90%;
+        margin: 0 auto 15px auto;
+        padding: 12px;
+        border-radius: 10px;
+        font-size: 14px;
+        background: rgba(255, 65, 65, 0.85);
+        color: white;
+        display: none;
+        animation: fadeIn .3s ease-in-out;
+        backdrop-filter: blur(5px);
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+
+</head>
+
+<body>
+
+<div class="glass-box">
+
+    <img src="{{ url_for('static', filename='Resourses/Logos/QroDashboard.png') }}" class="logo">
+
+    <!-- ALERTA DESDE FLASK -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="alert" id="alert">
+                {% for category, message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST" onsubmit="return validarFormulario();">
+
+        <div class="input-box">
+            <input type="text" id="usuario" name="usuario" placeholder="Usuario">
+        </div>
+
+        <div class="input-box">
+            <input type="password" id="password" name="password" placeholder="Contraseña">
+        </div>
+
+        <button type="submit">Iniciar Sesión</button>
+    </form>
+
+</div>
+
+<script>
+function validarFormulario() {
+    let usuario = document.getElementById("usuario").value.trim();
+    let password = document.getElementById("password").value.trim();
+    let alertBox = document.getElementById("alert");
+
+    if (usuario === "" || password === "") {
+        alertBox.innerHTML = "Todos los campos son obligatorios.";
+        alertBox.style.display = "block";
+        return false;
+    }
+
+    return true;
+}
+
+// Si Flask mandó un flash, mostrar alerta automáticamente
+window.onload = function() {
+    let alertBox = document.getElementById("alert");
+    if (alertBox) {
+        alertBox.style.display = "block";
+    }
+};
+</script>
+
+</body>
+</html>

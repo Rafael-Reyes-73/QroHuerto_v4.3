@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Fonts y iconos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+  <!-- Tus estilos -->
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="../static/CSS/header.css" />
+  <link rel="stylesheet" href="../static/CSS/botones.css" />
+  <link rel="stylesheet" href="../static/CSS/Ubicacion.css" />
+
+  <title>QroHuerto - Ubicacion</title>
+      <link rel="icon" href="../static/Resourses/Logos/QH.png" type="image/x-icon" />
+</head>
+<body style="
+  background-image: url('../static/Resourses/Backgrounds/Background5.png');
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: top center;
+">
+
+<header>
+  <div class="container">
+    <div class="parentheader">
+      <div class="divlogo">
+        <img id="logo-img" src="../static/Resourses/Logos/QH uerto.png" alt="Logo" class="logo" />
+      </div>
+
+      <div id="scroll-message">Scrolea hacia abajo</div>
+
+      <div class="divusuario">
+        <nav class="top-menu-box">
+          <a href="#" class="corona">Favoritas</a>
+          <a href="#" class="corona">My Huerto</a>
+<div class="profile-pic">
+  {% if foto_perfil %}
+    <img src="{{ url_for('static', filename='uploads/' + foto_perfil) }}" alt="Foto de {{ apodo }}">
+  {% else %}
+    <img src="{{ url_for('static', filename='Resourses/Img/user.png') }}" alt="Foto por defecto">
+  {% endif %}
+</div>
+          <a href="#" class="NamePerf">{{apodo}}</a>
+        </nav>
+      </div>
+
+      <div class="menucomplet">
+        <main id="app" class="dark">
+          <nav>  
+      <button type="button" onclick="window.location.href='{{ url_for('index2') }}'">Home</button>
+      <button type="button" onclick="window.location.href='{{ url_for('qroplaylogin') }}'">QroPlay</button>
+      <button type="button" onclick="window.location.href='{{ url_for('test') }}'">Test</button>
+      <button type="button" onclick="window.location.href='{{ url_for('catalogo') }}'">Catálogo</button>
+      <button class="active" type="button" onclick="window.location.href='{{ url_for('ubicacion') }}'">Ubicacion</button>
+      <button  type="button" onclick="window.location.href='{{ url_for('nosotros') }}'">Nosotros</button>
+          </nav>
+        </main>
+        <div
+          id="profile-on-scroll"
+          style="display: none; gap: 10px; align-items: center; margin-left: 10px"
+        >
+<div class="profile-pic">
+  {% if foto_perfil %}
+    <img src="{{ url_for('static', filename='uploads/' + foto_perfil) }}" alt="Foto de {{ apodo }}">
+  {% else %}
+    <img src="{{ url_for('static', filename='Resourses/Img/user.png') }}" alt="Foto por defecto">
+  {% endif %}
+</div>
+          <span style="color: #333; font-weight: bold">{{apodo}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="muro" id="muro" style="position: relative; background: transparent; padding: 60px 0 20px;">
+
+  <!-- Texto grande de fondo -->
+  <h1 style="
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 8rem;
+    color: rgba(255, 255, 255, 0.158);
+    font-weight: 900;
+    user-select: none;
+    pointer-events: none;
+    white-space: nowrap;
+    z-index: 0;
+    font-family: 'Segoe UI', sans-serif;
+    letter-spacing: 10px;
+    text-transform: uppercase;
+  ">
+    Ubicacion
+  </h1>
+
+  <!-- Texto principal -->
+  <h1 style="
+    position: relative;
+    text-align: center; 
+    color: #fff; 
+    font-family: 'Segoe UI', sans-serif; 
+    font-size: 3rem; 
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+    z-index: 1;
+  ">
+    QroMapa
+  </h1>
+</div>
+<div class="muro" id="muro">
+
+  <!-- Contenedor principal: slider + mapa -->
+  <section id="ubicacion">
+    <div class="slider-wrapper">
+      <button class="nav-arrow right" aria-label="Anterior">
+        <i class="fas fa-chevron-up"></i>
+      </button>
+      <div class="carousel-container">
+        <div class="carousel-track">
+          <!-- Tarjetas del carrusel generadas por JS -->
+        </div>
+      </div>
+      <button class="nav-arrow left" aria-label="Siguiente">
+        <i class="fas fa-chevron-down"></i>
+      </button>
+
+      <div class="dots">
+        <!-- Dots generados por JS -->
+      </div>
+
+      <div class="member-info">
+        <h2 class="member-name"></h2>
+        <p class="member-role"></p>
+      </div>
+    </div>
+
+    <div id="map"></div>
+  </section>
+</div>
+
+  <!-- SVG filter -->
+  <svg width="0" height="0" style="position: absolute;">
+    <filter id="goo" x="-50%" y="-50%" width="200%" height="200%">
+      <feComponentTransfer>
+        <feFuncA type="discrete" tableValues="0 1"></feFuncA>
+      </feComponentTransfer>
+      <feGaussianBlur stdDeviation="5"></feGaussianBlur>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="-5 11"></feFuncA>
+      </feComponentTransfer>
+    </filter>
+  </svg>
+        <script>
+    // Aplica el movimiento del fondo en cada botón
+    document.querySelectorAll("button").forEach(btn => {
+      btn.addEventListener("pointermove", (e) => {
+        const rect = btn.getBoundingClientRect();
+        btn.style.setProperty('--x', ((e.clientX - rect.x) / rect.width) * 100);
+        btn.style.setProperty('--y', ((e.clientY - rect.y) / rect.height) * 100);
+      });
+    });
+  </script>
+
+<script src="https://unpkg.com/scrollreveal"></script>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+  // Detectar cuando la sección entra en pantalla
+  const ubicacionSection = document.getElementById('ubicacion');
+
+  function checkVisibility() {
+    const rect = ubicacionSection.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 100) {
+      ubicacionSection.classList.add('visible');
+      window.removeEventListener('scroll', checkVisibility);
+    }
+  }
+
+  window.addEventListener('scroll', checkVisibility);
+  window.addEventListener('load', checkVisibility);
+</script>
+
+<!-- Inicialización simple del mapa -->
+<script>
+  // Espera a que DOM esté listo
+  document.addEventListener('DOMContentLoaded', () => {
+    // Crear mapa
+    const map = L.map('map').setView([20.5888, -100.3899], 11); // Coordenadas de Querétaro
+
+    // Capa base OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors',
+      maxZoom: 19,
+    }).addTo(map);
+
+    // Ejemplo: marcador simple
+    L.marker([20.5888, -100.3899]).addTo(map)
+      .bindPopup('Querétaro, Qro.')
+      .openPopup();
+  });
+</script>
+
+<script>
+  window.addEventListener('load', () => {
+    const header = document.querySelector('header');
+    header.classList.add('visible');
+  });
+</script>
+
+
+<script>
+  window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    const logoImg = document.getElementById('logo-img');
+
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled');
+      logoImg.src = '../static/Resourses/Logos/QH uerto C.png'; // nuevo logo
+    } else {
+      header.classList.remove('scrolled');
+      logoImg.src = '../static/Resourses/Logos/QH uerto.png'; // logo original
+    }
+  });
+  
+</script>
+<script src="../static/JS/UbicacionMunicipios.js"></script>
+<script src="main.js"></script>
+
+</body>
+</html>

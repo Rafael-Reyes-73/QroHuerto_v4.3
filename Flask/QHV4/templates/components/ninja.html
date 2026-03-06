@@ -1,0 +1,63 @@
+
+
+<header style="overflow: hidden;">
+  <div class="container">
+    <div class="parentheader">
+      <!-- Logo -->
+      <div class="divlogo">
+        <img id="logo-img" src="../static/Resourses/Logos/QH uerto.png" alt="Logo" class="logo" />
+      </div>
+
+<div id="scroll-message">Scrolea hacia abajo</div>
+
+      <!-- Opciones superiores -->
+      <div class="divusuario">
+  <nav class="top-menu-box">
+    <a href="#" class="corona">Favoritas</a>
+    <a href="#" class="corona">My Huerto</a>
+<div class="profile-pic">
+  {% if foto_perfil %}
+    <img src="{{ url_for('static', filename='uploads/' + foto_perfil) }}" alt="Foto de {{ apodo }}">
+  {% else %}
+    <img src="{{ url_for('static', filename='Resourses/Img/user.png') }}" alt="Foto por defecto">
+  {% endif %}
+</div>
+    <a href="#" class="NamePerf">{{apodo}}</a>
+    <!-- MENÚ DESPLEGABLE -->
+<div id="perfilMenu" class="perfil-menu">
+    <a href="{{ url_for('logout') }}">Cerrar sesión</a>
+</div>
+  </nav>
+  
+</div>
+
+
+      <!-- Menú inferior -->
+      <div class="menucomplet">
+<main id="app" class="dark">
+    <nav>
+      <button class="active" type="button" onclick="window.location.href='{{ url_for('index') }}'">Home</button>
+      <button type="button" onclick="window.location.href='{{ url_for('qroplaylogin') }}'">QroPlay</button>
+      <button type="button" onclick="window.location.href='{{ url_for('test') }}'">Test</button>
+      <button type="button" onclick="window.location.href='{{ url_for('catalogo') }}'">Catálogo</button>
+      <button type="button" onclick="window.location.href='{{ url_for('ubicacion') }}'">Ubicacion</button>
+      <button type="button" onclick="window.location.href='{{ url_for('nosotros') }}'">Nosotros</button>
+    </nav>
+  </main>
+    <div id="profile-on-scroll" style="display: none; gap: 10px; align-items: center; margin-left: 10px;">
+<div class="profile-pic">
+  {% if foto_perfil %}
+    <img src="{{ url_for('static', filename='uploads/' + foto_perfil) }}" alt="Foto de {{ apodo }}">
+  {% else %}
+    <img src="{{ url_for('static', filename='Resourses/Img/user.png') }}" alt="Foto por defecto">
+  {% endif %}
+</div>
+    <span style="color: #333; font-weight: bold;">{{ apodo }}</span>
+  </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+

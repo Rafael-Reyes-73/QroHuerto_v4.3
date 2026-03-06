@@ -1,0 +1,35 @@
+<div class="menucomplet">
+  <main id="app" class="dark">
+    <nav>
+      <button class="{{ 'active' if active_page=='index' else '' }}"
+              onclick="window.location.href='{{ url_for('index2') }}'">
+        Home
+      </button>
+
+      <button class="{{ 'active' if active_page=='qroplay' else '' }}"
+              onclick="window.location.href='{{ url_for('qroplaylogin') }}'">
+        QroPlay
+      </button>
+
+      <button class="{{ 'active' if active_page=='test' else '' }}"
+              onclick="window.location.href='{{ url_for('test') }}'">
+        Test
+      </button>
+
+      <button class="{{ 'active' if active_page=='catalogo' else '' }}"
+              onclick="window.location.href='{{ url_for('catalogo') }}'">
+        Catálogo
+      </button>
+
+      <button class="{{ 'active' if active_page=='ubicacion' else '' }}"
+              onclick="window.location.href='{{ url_for('ubicacion') }}'">
+        Ubicación
+      </button>
+
+      <button class="{{ 'active' if active_page=='nosotros' else '' }}"
+              onclick="window.location.href='{{ url_for('nosotros') }}'">
+        Nosotros
+      </button>
+    </nav>
+  </main>
+</div>

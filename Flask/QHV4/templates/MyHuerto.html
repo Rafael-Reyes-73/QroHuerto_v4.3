@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Huerto - Progreso</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<style>
+    body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #f2f7f5;
+}
+
+/* Layout principal */
+.dashboard {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 50px;
+}
+
+/* Contenedores con borde */
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  border: 2px solid #e0e0e0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.timeline-card {
+  flex: 2;
+}
+
+.calendar-card {
+  flex: 1;
+}
+
+/* Títulos */
+.title {
+  text-align: center;
+  color: #3570ff;
+  margin: 0;
+}
+.subtitle {
+  text-align: center;
+  color: #0dc572;
+  margin-bottom: 30px;
+}
+
+/* Timeline */
+.progress-timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding-left: 30px;
+  border-left: 4px solid #0dc572;
+}
+.progress-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+.circle {
+  width: 40px;
+  height: 40px;
+  background: #ccc;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+  z-index: 1;
+  flex-shrink: 0;
+}
+.progress-step.active .circle {
+  background: #0dc572;
+}
+.step-info {
+  background: white;
+  padding: 15px 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  width: 100%;
+}
+.step-info h3 { margin: 0 0 5px 0; font-size: 18px; }
+.step-info p { margin: 0; font-size: 14px; color: #444; }
+.highlight {
+  background: #0090ff;
+  color: white;
+}
+.highlight p { color: white; }
+.final { border: 2px solid #0dc572; }
+
+/* Calendario */
+.calendar { text-align: center; }
+.date-highlight {
+  background: #00c060;
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+.date-highlight .day {
+  font-size: 50px;
+  display: block;
+}
+.date-highlight .weekday {
+  font-size: 18px;
+  text-transform: uppercase;
+}
+.calendar-grid table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th {
+  color: gray;
+  font-weight: 500;
+  padding: 5px;
+}
+td {
+  padding: 10px;
+  border-radius: 5px;
+}
+.today {
+  background: #00c060;
+  color: white;
+}
+
+</style>
+<body>
+
+  <main class="dashboard">
+
+    <!-- CONTENEDOR IZQUIERDO: PROGRESO -->
+    <section class="card timeline-card">
+      <h2 class="title">Melissa - MyHuerto</h2>
+      <p class="subtitle">Progreso de tu cultivo de Fresas</p>
+
+      <div class="progress-timeline">
+
+        <!-- Etapa: Siembra -->
+        <div class="progress-step active">
+          <div class="circle">1</div>
+          <div class="step-info">
+            <h3>Siembra</h3>
+            <p>Profundidad: 2 a 3 mm</p>
+          </div>
+        </div>
+
+        <!-- Etapa: Germinación -->
+        <div class="progress-step active">
+          <div class="circle">2</div>
+          <div class="step-info">
+            <h3>Germinación</h3>
+            <p>Días aprox. para germinar: 10 a 15 días</p>
+          </div>
+        </div>
+
+        <!-- Etapa: Trasplante -->
+        <div class="progress-step">
+          <div class="circle">3</div>
+          <div class="step-info">
+            <h3>Trasplante</h3>
+            <p>Trasplantar a macetas: 10 mm<br>
+            Trasplantar a tierra: Espaciado mínimo 30 cm</p>
+          </div>
+        </div>
+
+        <!-- Etapa: Riego y cuidados -->
+        <div class="progress-step">
+          <div class="circle">4</div>
+          <div class="step-info highlight">
+            <h3>Riego y cuidados 💧</h3>
+            <p>
+              2.5 a 5 cm de agua/semana, suelo húmedo sin encharcar.<br>
+              Luz solar directa 6h/día.<br>
+              Revisa la humedad del suelo regularmente.
+            </p>
+          </div>
+        </div>
+
+        <!-- Etapa: Maduración -->
+        <div class="progress-step">
+          <div class="circle">5</div>
+          <div class="step-info final">
+            <h3>Tiempo aprox. para madurar 🍓</h3>
+            <p>120 a 150 días desde la siembra</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTENEDOR DERECHO: CALENDARIO -->
+    <aside class="card calendar-card">
+      <h2 class="title">Calendario</h2>
+      <p class="subtitle">Seguimiento de tu cultivo</p>
+
+      <div class="calendar">
+        <div class="date-highlight">
+          <span class="day">27</span>
+          <span class="weekday">JUEVES</span>
+        </div>
+
+        <div class="calendar-grid">
+          <header class="calendar-header">
+            <span>Abril 2025</span>
+          </header>
+          <table>
+            <thead>
+              <tr>
+                <th>Dom</th><th>Lun</th><th>Mar</th><th>Mié</th><th>Jue</th><th>Vie</th><th>Sáb</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>30</td><td>31</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+              <tr><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td></tr>
+              <tr><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td></tr>
+              <tr><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td></tr>
+              <tr><td>27</td><td class="today">28</td><td>29</td><td>30</td><td>1</td><td>2</td><td>3</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </aside>
+
+  </main>
+
+</body>
+</html>
